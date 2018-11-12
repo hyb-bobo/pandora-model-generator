@@ -1,0 +1,128 @@
+
+注：①、目前老表（其他团队建的表）
+
+        1、Bean  ---->   
+                // @SkipJsonToString 需要去掉（重复生成ID）； 老表需要注意人家主键是否是自动增长
+                ID 对应的set、get方法重复 ；
+                
+        2、xxxReader.xml ---->   主键字段重复出现。
+
+    
+    ②、我们自定义的新表
+
+        1、PS  注解未自动添加
+        2、@PKType(setType = String.class) 需要引入对应jar（import com.realtech.pandora.myAnnotation.PKType;）
+           @SkipJsonToString 需要去掉（重复生成ID）
+        
+        3、如果主键值非ID时（对应主键的set、get方法需要修改成以下样式），而且重复生成了主键对应的set、get方法
+					  public String getMandt() {
+							return mandt;
+						}
+					
+						public void setMandt(String id) {
+							this.mandt = id;
+						}
+        4、xml 对应主键字段重复出现
+
+
+****前期准备以及注意事项
+    1、如果是新加表（修改baseModel.properties）
+	id=id
+
+	# tpm kai tou de 
+
+	#dr=delete_flag
+	#dataVersion=data_version
+	#createAt=create_at
+	#createBy=create_by
+	#updateAt=update_at
+	#updateBy=update_by
+	#deleteAt=delete_at
+	#deleteBy=delete_by
+
+	# fei tpm kai tou de 
+	dr=
+	dataVersion=
+	createAt=
+	createBy=
+	updateAt=
+	updateBy=
+	deleteAt=
+	deleteBy=
+
+    2、判断生成model对应表的主键是String还是Integer类型
+
+       2.1、如果是String类型
+            Bean : BaseModel<String>
+	    reader : BaseReader<String,xxxBean>
+            service : BaseService<String,xxxBean>
+            xxxWriter.xml : isnert 中(delete_flag,data_version）分别设置为（0,1）
+            ☆：非TPM开头 serviceImp : 加注解 @DeleteFlag(flag = false)
+
+       2.2、如果是Integer类型(☆☆☆☆☆☆☆☆注意联合主键问题☆☆☆☆☆☆☆☆☆☆☆)
+
+            Bean : 
+                   2.2.1、BaseModel<Integer> 、
+                   2.2.2、注意：加注解 @PKType(setType = Integer.class)，
+                   2.2.3、date 数据类型 都要换为 Timestamp。
+            reader : BaseReader<Integer,xxxBean>
+            service : BaseService<Integer,xxxBean>
+            serviceImp : 加注解 @DeleteFlag(flag = false)
+            xml: xxxWriter.xml 中insert 需要去掉主键ID（因为数据库设置了自增），update中set同样需要去掉 xxx_id = #{xxxID}
+                 如果数据库有日期时间格式为Timestamp ，对应xxxwriter.xml 中都需要删除
+
+一、如果是新增加一个表
+
+    可以使用apollo-zzzdbgenerator项目自动生成对应的model，步骤如下：
+
+    1、修改/apollo-zzzdbgenerator/src/main/resources/dbtools.properties
+
+       ####数据库基本信息 MySQL（确认是你要修改表的那个库）
+       driverName=com.mysql.jdbc.Driver
+       sqlUrl=jdbc:mysql://172.18.100.91:3306/apollo?useUnicode=true&characterEncoding=UTF-8
+       sqlUser=renesola
+       sqlPassword=renesola
+
+       #生成文件所必须的信息（修改你需要生成表的名字）
+       tableNames=t_item_picture(这里可以一次生成多个用“，”隔开)
+       basePackage=com.renesola.apollo
+
+    2、运行/apollo-zzzdbgenerator/src/main/java/dbtools/generator/Main.java
+
+    3、在项目下吧对应的东西搞到对应的包下/apollo-zzzdbgenerator/model（将下面包下的文件拷贝到对应的model位置）
+       ①/apollo-zzzdbgenerator/model/java/com/renesola/apollo/model
+       ②/apollo-zzzdbgenerator/model/java/com/renesola/apollo/reader
+       ③/apollo-zzzdbgenerator/model/java/com/renesola/apollo/writer
+       ④/apollo-zzzdbgenerator/model/resources/com/renesola/apollo/xml/reader
+       ⑤/apollo-zzzdbgenerator/model/resources/com/renesola/apollo/xml/writer
+
+    4、运行/apollo-model/src/main/java/DBConfigGenerator.java添加对应的xml映射
+    
+二、要是只是修改某个字段
+     可以使用/apollo-zzzdbgenerator/ 项目中的  InsertMain.java
+
+     	public static final String[] fieldToAdd = new String[] {
+		"数据库的列名", "对应Bean中的数据类型"  
+                // 可以一次生成多个逗号隔开，如下
+                //（
+                //   "数据库的列名1", "对应Bean中的数据类型" ,
+                //   "数据库的列名2", "对应Bean中的数据类型" ,
+                //   "数据库的列名3", "对应Bean中的数据类型" 
+                // ）
+	};
+
+     就直接去相应的Bean  和 xml 里面去修改就好了 （注意：只修改model自动生成部门的sql,
+    人家自己写的sql  你要跟人家说，不能擅自改动）
+
+
+三、如果表名字变更，就需要注意点，如果表名变更而且字段修改的很大的话就可以直接用第一步的操作
+    自动生成（但是要注意人家的xml里面是不是有人家自己的sql,如果有跟对应的人商量着来）
+    运行/apollo-model/src/main/java/DBConfigGenerator.java添加对应的xml映射
+
+
+
+
+
+
+
+    
