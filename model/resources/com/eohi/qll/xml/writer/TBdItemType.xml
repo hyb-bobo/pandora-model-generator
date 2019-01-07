@@ -1,0 +1,66 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdItemTypeWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdItemType">
+		insert into dbo.t_bd_item_type (
+			id,
+			note,
+			code,
+			factory_id,
+			parent_item_type_id,
+			name,
+			descrition,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{code},
+			#{factoryId},
+			#{parentItemTypeId},
+			#{name},
+			#{descrition},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdItemType">
+		update dbo.t_bd_item_type set
+        <if test="deleteFlag==0">
+            note = #{note},
+            code = #{code},
+            factory_id = #{factoryId},
+            parent_item_type_id = #{parentItemTypeId},
+            name = #{name},
+            descrition = #{descrition},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

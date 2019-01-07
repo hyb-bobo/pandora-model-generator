@@ -11,7 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DBMysql extends DBBase{
     @Override
+    protected String queryTableComent(String tableName) {
+        return null;
+    }
+
+    @Override
     protected String getSqlAllTableNames() {
+        return null;
+    }
+
+    @Override
+    protected String getSqlAllTableComent(String tableName) {
         return null;
     }
 

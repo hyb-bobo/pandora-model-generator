@@ -1,0 +1,90 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdShiftWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdShift">
+		insert into dbo.t_bd_shift (
+			id,
+			note,
+			initiate_time,
+			code,
+			initiate_end_at,
+			total_time,
+			factory_id,
+			work_time,
+			break_end_at,
+			break_time,
+			break_start_at,
+			name,
+			initiate_start_at,
+			begin_time,
+			end_time,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{initiateTime},
+			#{code},
+			#{initiateEndAt},
+			#{totalTime},
+			#{factoryId},
+			#{workTime},
+			#{breakEndAt},
+			#{breakTime},
+			#{breakStartAt},
+			#{name},
+			#{initiateStartAt},
+			#{beginTime},
+			#{endTime},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdShift">
+		update dbo.t_bd_shift set
+        <if test="deleteFlag==0">
+            note = #{note},
+            initiate_time = #{initiateTime},
+            code = #{code},
+            initiate_end_at = #{initiateEndAt},
+            total_time = #{totalTime},
+            factory_id = #{factoryId},
+            work_time = #{workTime},
+            break_end_at = #{breakEndAt},
+            break_time = #{breakTime},
+            break_start_at = #{breakStartAt},
+            name = #{name},
+            initiate_start_at = #{initiateStartAt},
+            begin_time = #{beginTime},
+            end_time = #{endTime},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

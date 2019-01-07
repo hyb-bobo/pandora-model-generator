@@ -1,0 +1,267 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdMouldReader">
+
+	<resultMap id="tBdMouldResultMap" type="com.eohi.qll.model.TBdMould">
+		<id property="id" column="id" />
+		<result property="acceptanceDate" column="acceptance_date" />
+		<result property="sizeUomId" column="size_uom_id" />
+		<result property="note" column="note" />
+		<result property="code" column="code" />
+		<result property="qrCodePictureUrl" column="qr_code_picture_url" />
+		<result property="modelId" column="model_id" />
+		<result property="manufacturerEquipmentCode" column="manufacturer_equipment_code" />
+		<result property="lifetime" column="lifetime" />
+		<result property="description" column="description" />
+		<result property="acceptanceApplicationFormId" column="acceptance_application_form_id" />
+		<result property="purchasePrice" column="purchase_price" />
+		<result property="residualValue" column="residual_value" />
+		<result property="factoryLocationId" column="factory_location_id" />
+		<result property="photoResUserObjId" column="photo_res_user_obj_id" />
+		<result property="poNo" column="po_no" />
+		<result property="weightUnitId" column="weight_unit_id" />
+		<result property="manufactureDate" column="manufacture_date" />
+		<result property="depreciationRate" column="depreciation_rate" />
+		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="manufacturerId" column="manufacturer_id" />
+		<result property="installationDate" column="installation_date" />
+		<result property="weight" column="weight" />
+		<result property="classification" column="classification" />
+		<result property="localName" column="local_name" />
+		<result property="size" column="size" />
+		<result property="poName" column="po_name" />
+		<result property="mouldResumeId" column="mould_resume_id" />
+		<result property="name" column="name" />
+		<result property="usedFor" column="used_for" />
+		<result property="typeId" column="type_id" />
+		<result property="startToUseDate" column="start_to_use_date" />
+		<result property="config" column="config" />
+		<result property="status" column="status" />
+		<result property="endToUseDate" column="end_to_use_date" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdMouldResultMap2" type="com.eohi.qll.model.TBdMould">
+		<id property="id" column="id" />
+		<result property="acceptanceDate" column="acceptance_date" />
+		<result property="sizeUomId" column="size_uom_id" />
+		<result property="note" column="note" />
+		<result property="code" column="code" />
+		<result property="qrCodePictureUrl" column="qr_code_picture_url" />
+		<result property="modelId" column="model_id" />
+		<result property="manufacturerEquipmentCode" column="manufacturer_equipment_code" />
+		<result property="lifetime" column="lifetime" />
+		<result property="description" column="description" />
+		<result property="acceptanceApplicationFormId" column="acceptance_application_form_id" />
+		<result property="purchasePrice" column="purchase_price" />
+		<result property="residualValue" column="residual_value" />
+		<result property="factoryLocationId" column="factory_location_id" />
+		<result property="photoResUserObjId" column="photo_res_user_obj_id" />
+		<result property="poNo" column="po_no" />
+		<result property="weightUnitId" column="weight_unit_id" />
+		<result property="manufactureDate" column="manufacture_date" />
+		<result property="depreciationRate" column="depreciation_rate" />
+		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="manufacturerId" column="manufacturer_id" />
+		<result property="installationDate" column="installation_date" />
+		<result property="weight" column="weight" />
+		<result property="classification" column="classification" />
+		<result property="localName" column="local_name" />
+		<result property="size" column="size" />
+		<result property="poName" column="po_name" />
+		<result property="mouldResumeId" column="mould_resume_id" />
+		<result property="name" column="name" />
+		<result property="usedFor" column="used_for" />
+		<result property="typeId" column="type_id" />
+		<result property="startToUseDate" column="start_to_use_date" />
+		<result property="config" column="config" />
+		<result property="status" column="status" />
+		<result property="endToUseDate" column="end_to_use_date" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		acceptance_date,
+		size_uom_id,
+		note,
+		code,
+		qr_code_picture_url,
+		model_id,
+		manufacturer_equipment_code,
+		lifetime,
+		description,
+		acceptance_application_form_id,
+		purchase_price,
+		residual_value,
+		factory_location_id,
+		photo_res_user_obj_id,
+		po_no,
+		weight_unit_id,
+		manufacture_date,
+		depreciation_rate,
+		associated_obj_id,
+		factory_id,
+		manufacturer_id,
+		installation_date,
+		weight,
+		classification,
+		local_name,
+		size,
+		po_name,
+		mould_resume_id,
+		name,
+		used_for,
+		type_id,
+		start_to_use_date,
+		config,
+		status,
+		end_to_use_date,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdMouldResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_mould
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdMouldResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_mould
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdMouldResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_mould
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdMouldResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_mould
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_mould
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

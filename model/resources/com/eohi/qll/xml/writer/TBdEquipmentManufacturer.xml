@@ -1,0 +1,87 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdEquipmentManufacturerWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdEquipmentManufacturer">
+		insert into dbo.t_bd_equipment_manufacturer (
+			id,
+			note,
+			website,
+			code,
+			associated_obj_id,
+			description,
+			contact_person,
+			tax_code,
+			local_name,
+			registered_address,
+			phone,
+			name,
+			email,
+			status,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{website},
+			#{code},
+			#{associatedObjId},
+			#{description},
+			#{contactPerson},
+			#{taxCode},
+			#{localName},
+			#{registeredAddress},
+			#{phone},
+			#{name},
+			#{email},
+			#{status},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdEquipmentManufacturer">
+		update dbo.t_bd_equipment_manufacturer set
+        <if test="deleteFlag==0">
+            note = #{note},
+            website = #{website},
+            code = #{code},
+            associated_obj_id = #{associatedObjId},
+            description = #{description},
+            contact_person = #{contactPerson},
+            tax_code = #{taxCode},
+            local_name = #{localName},
+            registered_address = #{registeredAddress},
+            phone = #{phone},
+            name = #{name},
+            email = #{email},
+            status = #{status},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

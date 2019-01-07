@@ -1,0 +1,216 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdProcessRouteReader">
+
+	<resultMap id="tBdProcessRouteResultMap" type="com.eohi.qll.model.TBdProcessRoute">
+		<id property="id" column="id" />
+		<result property="def3" column="def3" />
+		<result property="def4" column="def4" />
+		<result property="note" column="note" />
+		<result property="def1" column="def1" />
+		<result property="def2" column="def2" />
+		<result property="postProcessId" column="post_process_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="materialId" column="material_id" />
+		<result property="factoryLocationId" column="factory_location_id" />
+		<result property="descrition" column="descrition" />
+		<result property="def9" column="def9" />
+		<result property="postProcessSerial" column="post_process_serial" />
+		<result property="def7" column="def7" />
+		<result property="preProcessId" column="pre_process_id" />
+		<result property="def8" column="def8" />
+		<result property="def5" column="def5" />
+		<result property="preProcessSerial" column="pre_process_serial" />
+		<result property="def6" column="def6" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdProcessRouteResultMap2" type="com.eohi.qll.model.TBdProcessRoute">
+		<id property="id" column="id" />
+		<result property="def3" column="def3" />
+		<result property="def4" column="def4" />
+		<result property="note" column="note" />
+		<result property="def1" column="def1" />
+		<result property="def2" column="def2" />
+		<result property="postProcessId" column="post_process_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="materialId" column="material_id" />
+		<result property="factoryLocationId" column="factory_location_id" />
+		<result property="descrition" column="descrition" />
+		<result property="def9" column="def9" />
+		<result property="postProcessSerial" column="post_process_serial" />
+		<result property="def7" column="def7" />
+		<result property="preProcessId" column="pre_process_id" />
+		<result property="def8" column="def8" />
+		<result property="def5" column="def5" />
+		<result property="preProcessSerial" column="pre_process_serial" />
+		<result property="def6" column="def6" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		def3,
+		def4,
+		note,
+		def1,
+		def2,
+		post_process_id,
+		factory_id,
+		material_id,
+		factory_location_id,
+		descrition,
+		def9,
+		post_process_serial,
+		def7,
+		pre_process_id,
+		def8,
+		def5,
+		pre_process_serial,
+		def6,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdProcessRouteResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_process_route
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdProcessRouteResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_process_route
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdProcessRouteResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_process_route
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdProcessRouteResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_process_route
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_process_route
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

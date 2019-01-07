@@ -1,0 +1,246 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdCustomerReader">
+
+	<resultMap id="tBdCustomerResultMap" type="com.eohi.qll.model.TBdCustomer">
+		<id property="id" column="id" />
+		<result property="zipCode" column="zip_code" />
+		<result property="note" column="note" />
+		<result property="code" column="code" />
+		<result property="formAt" column="form_at" />
+		<result property="scale" column="scale" />
+		<result property="industry" column="industry" />
+		<result property="source" column="source" />
+		<result property="type" column="type" />
+		<result property="isListedCompany" column="is_listed_company" />
+		<result property="countryId" column="country_id" />
+		<result property="legalName" column="legal_name" />
+		<result property="annualRevenueLastYear" column="annual_revenue_last_year" />
+		<result property="tradeName" column="trade_name" />
+		<result property="websiteUrl" column="website_url" />
+		<result property="registeredCapital" column="registered_capital" />
+		<result property="headquarterPictureUrl" column="headquarter_picture_url" />
+		<result property="previousVendor" column="previous_vendor" />
+		<result property="taxCertificatePictureUrl" column="tax_certificate_picture_url" />
+		<result property="address" column="address" />
+		<result property="level" column="level" />
+		<result property="businessLicensePictureUrl" column="business_license_picture_url" />
+		<result property="factoryId" column="factory_id" />
+		<result property="businessLicenseNo" column="business_license_no" />
+		<result property="taxCode" column="tax_code" />
+		<result property="stockCode" column="stock_code" />
+		<result property="businessType" column="business_type" />
+		<result property="status" column="status" />
+		<result property="juristicPerson" column="juristic_person" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdCustomerResultMap2" type="com.eohi.qll.model.TBdCustomer">
+		<id property="id" column="id" />
+		<result property="zipCode" column="zip_code" />
+		<result property="note" column="note" />
+		<result property="code" column="code" />
+		<result property="formAt" column="form_at" />
+		<result property="scale" column="scale" />
+		<result property="industry" column="industry" />
+		<result property="source" column="source" />
+		<result property="type" column="type" />
+		<result property="isListedCompany" column="is_listed_company" />
+		<result property="countryId" column="country_id" />
+		<result property="legalName" column="legal_name" />
+		<result property="annualRevenueLastYear" column="annual_revenue_last_year" />
+		<result property="tradeName" column="trade_name" />
+		<result property="websiteUrl" column="website_url" />
+		<result property="registeredCapital" column="registered_capital" />
+		<result property="headquarterPictureUrl" column="headquarter_picture_url" />
+		<result property="previousVendor" column="previous_vendor" />
+		<result property="taxCertificatePictureUrl" column="tax_certificate_picture_url" />
+		<result property="address" column="address" />
+		<result property="level" column="level" />
+		<result property="businessLicensePictureUrl" column="business_license_picture_url" />
+		<result property="factoryId" column="factory_id" />
+		<result property="businessLicenseNo" column="business_license_no" />
+		<result property="taxCode" column="tax_code" />
+		<result property="stockCode" column="stock_code" />
+		<result property="businessType" column="business_type" />
+		<result property="status" column="status" />
+		<result property="juristicPerson" column="juristic_person" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		zip_code,
+		note,
+		code,
+		form_at,
+		scale,
+		industry,
+		source,
+		type,
+		is_listed_company,
+		country_id,
+		legal_name,
+		annual_revenue_last_year,
+		trade_name,
+		website_url,
+		registered_capital,
+		headquarter_picture_url,
+		previous_vendor,
+		tax_certificate_picture_url,
+		address,
+		level,
+		business_license_picture_url,
+		factory_id,
+		business_license_no,
+		tax_code,
+		stock_code,
+		business_type,
+		status,
+		juristic_person,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdCustomerResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_customer
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdCustomerResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_customer
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdCustomerResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_customer
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdCustomerResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_customer
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_customer
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

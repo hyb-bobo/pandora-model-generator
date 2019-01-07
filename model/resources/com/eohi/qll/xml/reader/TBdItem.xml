@@ -1,0 +1,222 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdItemReader">
+
+	<resultMap id="tBdItemResultMap" type="com.eohi.qll.model.TBdItem">
+		<id property="id" column="id" />
+		<result property="def3" column="def3" />
+		<result property="def4" column="def4" />
+		<result property="note" column="note" />
+		<result property="memCode" column="mem_code" />
+		<result property="def1" column="def1" />
+		<result property="code" column="code" />
+		<result property="defaultUomId" column="default_uom_id" />
+		<result property="def2" column="def2" />
+		<result property="productionMode" column="production_mode" />
+		<result property="factoryId" column="factory_id" />
+		<result property="version" column="version" />
+		<result property="spec" column="spec" />
+		<result property="drawingNo" column="drawing_no" />
+		<result property="name" column="name" />
+		<result property="def9" column="def9" />
+		<result property="itemTypeId" column="item_type_id" />
+		<result property="def7" column="def7" />
+		<result property="def8" column="def8" />
+		<result property="def5" column="def5" />
+		<result property="def6" column="def6" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdItemResultMap2" type="com.eohi.qll.model.TBdItem">
+		<id property="id" column="id" />
+		<result property="def3" column="def3" />
+		<result property="def4" column="def4" />
+		<result property="note" column="note" />
+		<result property="memCode" column="mem_code" />
+		<result property="def1" column="def1" />
+		<result property="code" column="code" />
+		<result property="defaultUomId" column="default_uom_id" />
+		<result property="def2" column="def2" />
+		<result property="productionMode" column="production_mode" />
+		<result property="factoryId" column="factory_id" />
+		<result property="version" column="version" />
+		<result property="spec" column="spec" />
+		<result property="drawingNo" column="drawing_no" />
+		<result property="name" column="name" />
+		<result property="def9" column="def9" />
+		<result property="itemTypeId" column="item_type_id" />
+		<result property="def7" column="def7" />
+		<result property="def8" column="def8" />
+		<result property="def5" column="def5" />
+		<result property="def6" column="def6" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		def3,
+		def4,
+		note,
+		mem_code,
+		def1,
+		code,
+		default_uom_id,
+		def2,
+		production_mode,
+		factory_id,
+		version,
+		spec,
+		drawing_no,
+		name,
+		def9,
+		item_type_id,
+		def7,
+		def8,
+		def5,
+		def6,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdItemResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_item
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdItemResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_item
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdItemResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_item
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdItemResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_item
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_item
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

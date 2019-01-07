@@ -1,0 +1,108 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdItemWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdItem">
+		insert into dbo.t_bd_item (
+			id,
+			def3,
+			def4,
+			note,
+			mem_code,
+			def1,
+			code,
+			default_uom_id,
+			def2,
+			production_mode,
+			factory_id,
+			version,
+			spec,
+			drawing_no,
+			name,
+			def9,
+			item_type_id,
+			def7,
+			def8,
+			def5,
+			def6,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{def3},
+			#{def4},
+			#{note},
+			#{memCode},
+			#{def1},
+			#{code},
+			#{defaultUomId},
+			#{def2},
+			#{productionMode},
+			#{factoryId},
+			#{version},
+			#{spec},
+			#{drawingNo},
+			#{name},
+			#{def9},
+			#{itemTypeId},
+			#{def7},
+			#{def8},
+			#{def5},
+			#{def6},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdItem">
+		update dbo.t_bd_item set
+        <if test="deleteFlag==0">
+            def3 = #{def3},
+            def4 = #{def4},
+            note = #{note},
+            mem_code = #{memCode},
+            def1 = #{def1},
+            code = #{code},
+            default_uom_id = #{defaultUomId},
+            def2 = #{def2},
+            production_mode = #{productionMode},
+            factory_id = #{factoryId},
+            version = #{version},
+            spec = #{spec},
+            drawing_no = #{drawingNo},
+            name = #{name},
+            def9 = #{def9},
+            item_type_id = #{itemTypeId},
+            def7 = #{def7},
+            def8 = #{def8},
+            def5 = #{def5},
+            def6 = #{def6},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

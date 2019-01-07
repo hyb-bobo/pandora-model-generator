@@ -1,0 +1,78 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdPositionWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdPosition">
+		insert into dbo.t_bd_position (
+			id,
+			qualification,
+			note,
+			code,
+			associated_obj_id,
+			responsibility,
+			display_name,
+			factory_id,
+			department_id,
+			name,
+			abbreviation,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{qualification},
+			#{note},
+			#{code},
+			#{associatedObjId},
+			#{responsibility},
+			#{displayName},
+			#{factoryId},
+			#{departmentId},
+			#{name},
+			#{abbreviation},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdPosition">
+		update dbo.t_bd_position set
+        <if test="deleteFlag==0">
+            qualification = #{qualification},
+            note = #{note},
+            code = #{code},
+            associated_obj_id = #{associatedObjId},
+            responsibility = #{responsibility},
+            display_name = #{displayName},
+            factory_id = #{factoryId},
+            department_id = #{departmentId},
+            name = #{name},
+            abbreviation = #{abbreviation},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

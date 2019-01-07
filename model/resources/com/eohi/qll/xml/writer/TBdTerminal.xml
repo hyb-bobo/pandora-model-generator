@@ -1,0 +1,99 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdTerminalWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdTerminal">
+		insert into dbo.t_bd_terminal (
+			id,
+			note,
+			code,
+			associated_obj_id,
+			ip_address,
+			type,
+			picture_group_id,
+			manufacturer,
+			local_name,
+			protocol_id,
+			factory_location_id,
+			port,
+			name,
+			manufacture_date,
+			model,
+			start_to_use_date,
+			status,
+			end_to_use_date,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{code},
+			#{associatedObjId},
+			#{ipAddress},
+			#{type},
+			#{pictureGroupId},
+			#{manufacturer},
+			#{localName},
+			#{protocolId},
+			#{factoryLocationId},
+			#{port},
+			#{name},
+			#{manufactureDate},
+			#{model},
+			#{startToUseDate},
+			#{status},
+			#{endToUseDate},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdTerminal">
+		update dbo.t_bd_terminal set
+        <if test="deleteFlag==0">
+            note = #{note},
+            code = #{code},
+            associated_obj_id = #{associatedObjId},
+            ip_address = #{ipAddress},
+            type = #{type},
+            picture_group_id = #{pictureGroupId},
+            manufacturer = #{manufacturer},
+            local_name = #{localName},
+            protocol_id = #{protocolId},
+            factory_location_id = #{factoryLocationId},
+            port = #{port},
+            name = #{name},
+            manufacture_date = #{manufactureDate},
+            model = #{model},
+            start_to_use_date = #{startToUseDate},
+            status = #{status},
+            end_to_use_date = #{endToUseDate},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

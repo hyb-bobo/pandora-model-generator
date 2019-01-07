@@ -1,0 +1,78 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdProcessParameterWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdProcessParameter">
+		insert into dbo.t_bd_process_parameter (
+			id,
+			sort_no,
+			collect_method,
+			note,
+			code,
+			process_id,
+			display_name,
+			factory_id,
+			name,
+			descrition,
+			uom_id,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{sortNo},
+			#{collectMethod},
+			#{note},
+			#{code},
+			#{processId},
+			#{displayName},
+			#{factoryId},
+			#{name},
+			#{descrition},
+			#{uomId},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdProcessParameter">
+		update dbo.t_bd_process_parameter set
+        <if test="deleteFlag==0">
+            sort_no = #{sortNo},
+            collect_method = #{collectMethod},
+            note = #{note},
+            code = #{code},
+            process_id = #{processId},
+            display_name = #{displayName},
+            factory_id = #{factoryId},
+            name = #{name},
+            descrition = #{descrition},
+            uom_id = #{uomId},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

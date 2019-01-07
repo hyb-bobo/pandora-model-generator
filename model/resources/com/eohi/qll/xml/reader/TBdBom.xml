@@ -1,0 +1,189 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdBomReader">
+
+	<resultMap id="tBdBomResultMap" type="com.eohi.qll.model.TBdBom">
+		<id property="id" column="id" />
+		<result property="childItemId" column="child_item_id" />
+		<result property="note" column="note" />
+		<result property="parentItemQuantity" column="parent_item_quantity" />
+		<result property="childItemQuantity" column="child_item_quantity" />
+		<result property="parentItemId" column="parent_item_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="lossRate" column="loss_rate" />
+		<result property="version" column="version" />
+		<result property="bomHeadId" column="bom_head_id" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdBomResultMap2" type="com.eohi.qll.model.TBdBom">
+		<id property="id" column="id" />
+		<result property="childItemId" column="child_item_id" />
+		<result property="note" column="note" />
+		<result property="parentItemQuantity" column="parent_item_quantity" />
+		<result property="childItemQuantity" column="child_item_quantity" />
+		<result property="parentItemId" column="parent_item_id" />
+		<result property="factoryId" column="factory_id" />
+		<result property="lossRate" column="loss_rate" />
+		<result property="version" column="version" />
+		<result property="bomHeadId" column="bom_head_id" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		child_item_id,
+		note,
+		parent_item_quantity,
+		child_item_quantity,
+		parent_item_id,
+		factory_id,
+		loss_rate,
+		version,
+		bom_head_id,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdBomResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_bom
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdBomResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_bom
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdBomResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_bom
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdBomResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_bom
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_bom
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

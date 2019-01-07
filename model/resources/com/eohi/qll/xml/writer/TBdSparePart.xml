@@ -1,0 +1,111 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdSparePartWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdSparePart">
+		insert into dbo.t_bd_spare_part (
+			id,
+			note,
+			code,
+			supplier_id,
+			associated_obj_id,
+			model_id,
+			factory_id,
+			description,
+			weight,
+			uom_id,
+			type,
+			transportation_type,
+			use_type,
+			spec,
+			local_name,
+			photo_res_user_obj_id,
+			name,
+			manufacture_date,
+			start_to_use_date,
+			category_id,
+			status,
+			end_to_use_date,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{code},
+			#{supplierId},
+			#{associatedObjId},
+			#{modelId},
+			#{factoryId},
+			#{description},
+			#{weight},
+			#{uomId},
+			#{type},
+			#{transportationType},
+			#{useType},
+			#{spec},
+			#{localName},
+			#{photoResUserObjId},
+			#{name},
+			#{manufactureDate},
+			#{startToUseDate},
+			#{categoryId},
+			#{status},
+			#{endToUseDate},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdSparePart">
+		update dbo.t_bd_spare_part set
+        <if test="deleteFlag==0">
+            note = #{note},
+            code = #{code},
+            supplier_id = #{supplierId},
+            associated_obj_id = #{associatedObjId},
+            model_id = #{modelId},
+            factory_id = #{factoryId},
+            description = #{description},
+            weight = #{weight},
+            uom_id = #{uomId},
+            type = #{type},
+            transportation_type = #{transportationType},
+            use_type = #{useType},
+            spec = #{spec},
+            local_name = #{localName},
+            photo_res_user_obj_id = #{photoResUserObjId},
+            name = #{name},
+            manufacture_date = #{manufactureDate},
+            start_to_use_date = #{startToUseDate},
+            category_id = #{categoryId},
+            status = #{status},
+            end_to_use_date = #{endToUseDate},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

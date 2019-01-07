@@ -6,6 +6,7 @@ import com.realtech.pandora.templates.dbtools.model.Table;
 import com.realtech.pandora.templates.dbtools.model.db.DBBase;
 import com.realtech.pandora.templates.dbtools.model.db.DBManager;
 import com.realtech.pandora.util.FMGenerator;
+import com.realtech.pandora.util.StringUtil;
 import freemarker.template.TemplateException;
 //import org.python.antlr.ast.Str;
 
@@ -24,10 +25,12 @@ public class Main {
         int index = 1, generated = 0;
         List<String> errGenerateTableNames = new ArrayList<>();
         for(String tableName: tableL) {
-            System.out.print("全表生成：[ " + index++ + "/" + tableL.size() + " ][" + tableName + "]");
+//            System.out.print("全表生成：[ " + index++ + "/" + tableL.size() + " ][" + tableName + "]");
             Table table;
             try {
                 table = db.queryTables(tableName);
+                String s = StringUtil.toUpperCamelCase(tableName);
+                System.out.println(  s+ ","+table.getComment()+","+"PSProcessorQLL");
                 new FMGenerator(Config.properties, table)
                         .replace("$className", table.getClassName())
                         .replace("$package", Config.basePackage.replace(".", "/"))
@@ -38,7 +41,7 @@ public class Main {
                         .generateFile("model/resources/$package/xml/writer/$className.xml", "templates/dbtools/writerXml.ftl")
                         .generateFile("portal/$package/service/$classNameService.java", "templates/dbtools/service.ftl")
                         .generateFile("portal/$package/service/impl/$classNameServiceImpl.java", "templates/dbtools/serviceImpl.ftl");
-                System.out.println("OK~");
+//                System.out.println("OK~");
                 ++generated;
             } catch (GeneratorException e) {
                 errGenerateTableNames.add(tableName);

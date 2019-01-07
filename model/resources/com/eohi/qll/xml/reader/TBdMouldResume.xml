@@ -1,0 +1,195 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdMouldResumeReader">
+
+	<resultMap id="tBdMouldResumeResultMap" type="com.eohi.qll.model.TBdMouldResume">
+		<id property="id" column="id" />
+		<result property="transferFromDeptId" column="transfer_from_dept_id" />
+		<result property="transferToDeptId" column="transfer_to_dept_id" />
+		<result property="note" column="note" />
+		<result property="associatedBillId" column="associated_bill_id" />
+		<result property="transferDirection" column="transfer_direction" />
+		<result property="eventDescription" column="event_description" />
+		<result property="associatedDoId" column="associated_do_id" />
+		<result property="eventType" column="event_type" />
+		<result property="processor" column="processor" />
+		<result property="transactionWith" column="transaction_with" />
+		<result property="eventDate" column="event_date" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdMouldResumeResultMap2" type="com.eohi.qll.model.TBdMouldResume">
+		<id property="id" column="id" />
+		<result property="transferFromDeptId" column="transfer_from_dept_id" />
+		<result property="transferToDeptId" column="transfer_to_dept_id" />
+		<result property="note" column="note" />
+		<result property="associatedBillId" column="associated_bill_id" />
+		<result property="transferDirection" column="transfer_direction" />
+		<result property="eventDescription" column="event_description" />
+		<result property="associatedDoId" column="associated_do_id" />
+		<result property="eventType" column="event_type" />
+		<result property="processor" column="processor" />
+		<result property="transactionWith" column="transaction_with" />
+		<result property="eventDate" column="event_date" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		transfer_from_dept_id,
+		transfer_to_dept_id,
+		note,
+		associated_bill_id,
+		transfer_direction,
+		event_description,
+		associated_do_id,
+		event_type,
+		processor,
+		transaction_with,
+		event_date,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdMouldResumeResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_mould_resume
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdMouldResumeResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_mould_resume
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdMouldResumeResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_mould_resume
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdMouldResumeResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_mould_resume
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_mould_resume
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

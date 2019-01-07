@@ -1,0 +1,201 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.T700UserReader">
+
+	<resultMap id="t700UserResultMap" type="com.eohi.qll.model.T700User">
+		<id property="id" column="id" />
+		<result property="userFlag" column="user_flag" />
+		<result property="note" column="note" />
+		<result property="effectiveTime" column="effective_time" />
+		<result property="description" column="description" />
+		<result property="isLock" column="is_lock" />
+		<result property="localName" column="local_name" />
+		<result property="lastLoginTime" column="last_login_time" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="expiryTime" column="expiry_time" />
+		<result property="personId" column="person_id" />
+		<result property="memberId" column="member_id" />
+		<result property="status" column="status" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="t700UserResultMap2" type="com.eohi.qll.model.T700User">
+		<id property="id" column="id" />
+		<result property="userFlag" column="user_flag" />
+		<result property="note" column="note" />
+		<result property="effectiveTime" column="effective_time" />
+		<result property="description" column="description" />
+		<result property="isLock" column="is_lock" />
+		<result property="localName" column="local_name" />
+		<result property="lastLoginTime" column="last_login_time" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="expiryTime" column="expiry_time" />
+		<result property="personId" column="person_id" />
+		<result property="memberId" column="member_id" />
+		<result property="status" column="status" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		user_flag,
+		note,
+		effective_time,
+		description,
+		is_lock,
+		local_name,
+		last_login_time,
+		password,
+		name,
+		expiry_time,
+		person_id,
+		member_id,
+		status,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="t700UserResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_700_user
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="t700UserResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_700_user
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="t700UserResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_700_user
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="t700UserResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_700_user
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_700_user
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

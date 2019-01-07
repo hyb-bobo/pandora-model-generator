@@ -84,6 +84,20 @@ public class DBSqlServer extends DBBase {
     }
 
     @Override
+    protected String queryTableComent(String tableName) {
+        tableName = tableName.split("\\.")[1];
+        try (PreparedStatement ps = conn.prepareStatement(getSqlAllTableComent(tableName))){
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+               return rs.getString("remark");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public String queryPrimarykey(String tableName) throws GeneratorException {
         if(proertiesMap == null)
             getPropertiesFromTable(tableName);
@@ -118,6 +132,11 @@ public class DBSqlServer extends DBBase {
     @Override
     protected String getSqlAllTableNames() {
         return "select table_schema+'.'+table_name as TABLE_NAME from information_schema.tables where table_type = 'base table' order by TABLE_NAME";
+    }
+
+    @Override
+    protected String getSqlAllTableComent(String tableName) {
+        return "SELECT c.name,CAST (isnull(f.[value], '') AS nvarchar (100)) AS remark FROM sys.objects c LEFT JOIN sys.extended_properties f ON f.major_id = c.object_id AND f.minor_id = 0 AND f.class = 1 WHERE c.type = 'u' AND c.name = '"+ tableName +"'";
     }
 
     @Override

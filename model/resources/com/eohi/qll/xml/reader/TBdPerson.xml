@@ -1,0 +1,213 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.TBdPersonReader">
+
+	<resultMap id="tBdPersonResultMap" type="com.eohi.qll.model.TBdPerson">
+		<id property="id" column="id" />
+		<result property="note" column="note" />
+		<result property="skillsetLevel" column="skillset_level" />
+		<result property="code" column="code" />
+		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="rfidCardNo" column="rfid_card_no" />
+		<result property="factoryId" column="factory_id" />
+		<result property="sex" column="sex" />
+		<result property="mobile" column="mobile" />
+		<result property="nickleName" column="nickle_name" />
+		<result property="organizationId" column="organization_id" />
+		<result property="photoUrl" column="photo_url" />
+		<result property="weixin" column="weixin" />
+		<result property="positionId" column="position_id" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="email" column="email" />
+		<result property="homeAddress" column="home_address" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="tBdPersonResultMap2" type="com.eohi.qll.model.TBdPerson">
+		<id property="id" column="id" />
+		<result property="note" column="note" />
+		<result property="skillsetLevel" column="skillset_level" />
+		<result property="code" column="code" />
+		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="rfidCardNo" column="rfid_card_no" />
+		<result property="factoryId" column="factory_id" />
+		<result property="sex" column="sex" />
+		<result property="mobile" column="mobile" />
+		<result property="nickleName" column="nickle_name" />
+		<result property="organizationId" column="organization_id" />
+		<result property="photoUrl" column="photo_url" />
+		<result property="weixin" column="weixin" />
+		<result property="positionId" column="position_id" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="email" column="email" />
+		<result property="homeAddress" column="home_address" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		note,
+		skillset_level,
+		code,
+		associated_obj_id,
+		rfid_card_no,
+		factory_id,
+		sex,
+		mobile,
+		nickle_name,
+		organization_id,
+		photo_url,
+		weixin,
+		position_id,
+		name,
+		age,
+		email,
+		home_address,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="tBdPersonResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_person
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="tBdPersonResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_bd_person
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="tBdPersonResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_person
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="tBdPersonResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_bd_person
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_bd_person
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

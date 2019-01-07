@@ -1,0 +1,198 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.reader.T700MemberReader">
+
+	<resultMap id="t700MemberResultMap" type="com.eohi.qll.model.T700Member">
+		<id property="id" column="id" />
+		<result property="approvalStatus" column="approval_status" />
+		<result property="localName" column="local_name" />
+		<result property="isEohiCustomer" column="is_eohi_customer" />
+		<result property="iotEnable" column="iot_enable" />
+		<result property="note" column="note" />
+		<result property="companyId" column="company_id" />
+		<result property="creditLevel" column="credit_level" />
+		<result property="productionMode" column="production_mode" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="type" column="type" />
+		<result property="approvedAt" column="approved_at" />
+        <result property="createAt" column="create_at" />
+        <result property="createBy" column="create_by" />
+        <result property="updateAt" column="update_at" />
+        <result property="updateBy" column="update_by" />
+        <result property="deleteAt" column="delete_at" />
+        <result property="deleteBy" column="delete_by" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="dataVersion" column="data_version" />
+	</resultMap>
+	
+	<!--用于非关联查询使用，不要改-->
+	<resultMap id="t700MemberResultMap2" type="com.eohi.qll.model.T700Member">
+		<id property="id" column="id" />
+		<result property="approvalStatus" column="approval_status" />
+		<result property="localName" column="local_name" />
+		<result property="isEohiCustomer" column="is_eohi_customer" />
+		<result property="iotEnable" column="iot_enable" />
+		<result property="note" column="note" />
+		<result property="companyId" column="company_id" />
+		<result property="creditLevel" column="credit_level" />
+		<result property="productionMode" column="production_mode" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="type" column="type" />
+		<result property="approvedAt" column="approved_at" />
+		<result property="createAt" column="create_at" />
+		<result property="createBy" column="create_by" />
+		<result property="updateAt" column="update_at" />
+		<result property="updateBy" column="update_by" />
+		<result property="deleteAt" column="delete_at" />
+		<result property="deleteBy" column="delete_by" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="dataVersion" column="data_version" />
+	</resultMap>
+
+	<sql id="selectClause">
+		id,
+		approval_status,
+		local_name,
+		is_eohi_customer,
+		iot_enable,
+		note,
+		company_id,
+		credit_level,
+		production_mode,
+		name,
+		description,
+		type,
+		approved_at,
+        create_at,
+        create_by,
+        update_at,
+        update_by,
+        delete_at,
+        delete_by,
+        delete_flag,
+        data_version
+	</sql>
+
+
+    <select id="get" resultMap="t700MemberResultMap">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_700_member
+        where
+        id = #{id}
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="get2" resultMap="t700MemberResultMap2">
+        select top 1
+        <include refid="selectClause" />
+        from dbo.t_700_member
+        where
+        id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.eohi.qll.sql.Where" resultMap="t700MemberResultMap">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+                id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_700_member
+        <if test="join != null">
+        ${join}
+        </if>
+        ${whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+                id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+    <!--用于非关联查询使用-->
+    <select id="query2" parameterType="com.eohi.qll.sql.Where" resultMap="t700MemberResultMap2">
+        select
+        <if test="pageSize != 0">
+            * FROM(
+            SELECT TOP ${allRowNums}
+            ROW_NUMBER() OVER(
+            <if test="orderBy != null">
+                order by
+            ${orderBy}
+            </if>
+            <if test="orderBy == null">
+                order by
+            id
+            </if>
+            ) AS ROWID,
+        </if>
+        <include refid="selectClause" />
+        FROM dbo.t_700_member
+        <if test="join != null">
+        ${join}
+        </if>
+    #{whereHead}
+        <trim suffixOverrides="and">
+            <if test="id != null">
+            id = #{id} and
+            </if>
+        ${whereClause}
+        </trim>
+        <if test="groupBy != null">
+            group by
+        ${groupBy}
+        </if>
+        <if test="(pageSize == null or pageSize == 0)and orderBy != null">
+            order by
+        ${orderBy}
+        </if>
+        <if test="pageSize != 0">
+            ) AS TEMP1
+            WHERE ROWID> ${startRow}
+        </if>
+    </select>
+
+	<select id="count" parameterType="com.eohi.qll.sql.Where" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			dbo.t_700_member
+		<if test="join != null">
+			${join}
+		</if>
+		${whereHead}
+		${whereClause}
+		<if test="groupBy != null">
+		group by
+			${groupBy}
+		</if>
+	</select>
+	
+
+</mapper>

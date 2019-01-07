@@ -32,6 +32,7 @@ public class Table {
 
     /*逻辑删除标志位*/
     private String deleteFlagStr;
+    private String comment;
 
 	static {
 	    /*初始化加载公共字段*/
@@ -163,6 +164,14 @@ public class Table {
 
     public void setPublicPropertyList(List<Property> publicPropertyList) {
         this.publicPropertyList = publicPropertyList;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     public String getDr() {

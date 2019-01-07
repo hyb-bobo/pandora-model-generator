@@ -1,0 +1,117 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.T700ProductWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.T700Product">
+		insert into dbo.t_700_product (
+			id,
+			approval_status,
+			def3,
+			def4,
+			note,
+			def1,
+			def2,
+			off_ shelves_at,
+			factory_id,
+			description,
+			capacity_uom_id,
+			on_shelves_at,
+			local_name,
+			item_id,
+			product_category_id,
+			name,
+			average_capacity,
+			model,
+			def9,
+			def7,
+			def8,
+			def5,
+			member_id,
+			def6,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{approvalStatus},
+			#{def3},
+			#{def4},
+			#{note},
+			#{def1},
+			#{def2},
+			#{off shelvesAt},
+			#{factoryId},
+			#{description},
+			#{capacityUomId},
+			#{onShelvesAt},
+			#{localName},
+			#{itemId},
+			#{productCategoryId},
+			#{name},
+			#{averageCapacity},
+			#{model},
+			#{def9},
+			#{def7},
+			#{def8},
+			#{def5},
+			#{memberId},
+			#{def6},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.T700Product">
+		update dbo.t_700_product set
+        <if test="deleteFlag==0">
+            approval_status = #{approvalStatus},
+            def3 = #{def3},
+            def4 = #{def4},
+            note = #{note},
+            def1 = #{def1},
+            def2 = #{def2},
+            off_ shelves_at = #{off shelvesAt},
+            factory_id = #{factoryId},
+            description = #{description},
+            capacity_uom_id = #{capacityUomId},
+            on_shelves_at = #{onShelvesAt},
+            local_name = #{localName},
+            item_id = #{itemId},
+            product_category_id = #{productCategoryId},
+            name = #{name},
+            average_capacity = #{averageCapacity},
+            model = #{model},
+            def9 = #{def9},
+            def7 = #{def7},
+            def8 = #{def8},
+            def5 = #{def5},
+            member_id = #{memberId},
+            def6 = #{def6},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

@@ -39,8 +39,11 @@ public abstract class DBBase {
         table.setClassName(getClassNameFromTableName(tableName));
         table.setGenPropertyList(queryField(table));
         table.setAutoIncrementIdConfig(Config.isAutoIncrementId(getTableName(tableName)));
+        table.setComment(queryTableComent(tableName));
         return table;
     }
+
+    protected abstract String queryTableComent(String tableName);
 
     public String getClassNameFromTableName(String tableName) {
         int preNum;
@@ -171,6 +174,13 @@ public abstract class DBBase {
      * @return
      */
     protected abstract String getSqlAllTableNames();
+
+    /**
+     * 获取指定表的注释
+     * @param tableName
+     * @return
+     */
+    protected abstract String getSqlAllTableComent(String tableName);
 
     /**
      * 模糊查询列表

@@ -1,0 +1,132 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdCustomerWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdCustomer">
+		insert into dbo.t_bd_customer (
+			id,
+			zip_code,
+			note,
+			code,
+			form_at,
+			scale,
+			industry,
+			source,
+			type,
+			is_listed_company,
+			country_id,
+			legal_name,
+			annual_revenue_last_year,
+			trade_name,
+			website_url,
+			registered_capital,
+			headquarter_picture_url,
+			previous_vendor,
+			tax_certificate_picture_url,
+			address,
+			level,
+			business_license_picture_url,
+			factory_id,
+			business_license_no,
+			tax_code,
+			stock_code,
+			business_type,
+			status,
+			juristic_person,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{zipCode},
+			#{note},
+			#{code},
+			#{formAt},
+			#{scale},
+			#{industry},
+			#{source},
+			#{type},
+			#{isListedCompany},
+			#{countryId},
+			#{legalName},
+			#{annualRevenueLastYear},
+			#{tradeName},
+			#{websiteUrl},
+			#{registeredCapital},
+			#{headquarterPictureUrl},
+			#{previousVendor},
+			#{taxCertificatePictureUrl},
+			#{address},
+			#{level},
+			#{businessLicensePictureUrl},
+			#{factoryId},
+			#{businessLicenseNo},
+			#{taxCode},
+			#{stockCode},
+			#{businessType},
+			#{status},
+			#{juristicPerson},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdCustomer">
+		update dbo.t_bd_customer set
+        <if test="deleteFlag==0">
+            zip_code = #{zipCode},
+            note = #{note},
+            code = #{code},
+            form_at = #{formAt},
+            scale = #{scale},
+            industry = #{industry},
+            source = #{source},
+            type = #{type},
+            is_listed_company = #{isListedCompany},
+            country_id = #{countryId},
+            legal_name = #{legalName},
+            annual_revenue_last_year = #{annualRevenueLastYear},
+            trade_name = #{tradeName},
+            website_url = #{websiteUrl},
+            registered_capital = #{registeredCapital},
+            headquarter_picture_url = #{headquarterPictureUrl},
+            previous_vendor = #{previousVendor},
+            tax_certificate_picture_url = #{taxCertificatePictureUrl},
+            address = #{address},
+            level = #{level},
+            business_license_picture_url = #{businessLicensePictureUrl},
+            factory_id = #{factoryId},
+            business_license_no = #{businessLicenseNo},
+            tax_code = #{taxCode},
+            stock_code = #{stockCode},
+            business_type = #{businessType},
+            status = #{status},
+            juristic_person = #{juristicPerson},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

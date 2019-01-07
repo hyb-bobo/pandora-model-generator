@@ -1,0 +1,75 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdProcessWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdProcess">
+		insert into dbo.t_bd_process (
+			id,
+			note,
+			mould_id,
+			code,
+			factory_id,
+			name,
+			nc_program_url,
+			descrition,
+			manual_url,
+			type,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{mouldId},
+			#{code},
+			#{factoryId},
+			#{name},
+			#{ncProgramUrl},
+			#{descrition},
+			#{manualUrl},
+			#{type},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdProcess">
+		update dbo.t_bd_process set
+        <if test="deleteFlag==0">
+            note = #{note},
+            mould_id = #{mouldId},
+            code = #{code},
+            factory_id = #{factoryId},
+            name = #{name},
+            nc_program_url = #{ncProgramUrl},
+            descrition = #{descrition},
+            manual_url = #{manualUrl},
+            type = #{type},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

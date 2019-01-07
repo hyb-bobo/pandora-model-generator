@@ -1,0 +1,90 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdCompanyWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdCompany">
+		insert into dbo.t_bd_company (
+			id,
+			note,
+			website,
+			code,
+			associated_obj_id,
+			contact_person,
+			default_language_id,
+			tax_code,
+			organization_id,
+			local_name,
+			registered_address,
+			default_time_zone,
+			phone,
+			name,
+			email,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{website},
+			#{code},
+			#{associatedObjId},
+			#{contactPerson},
+			#{defaultLanguageId},
+			#{taxCode},
+			#{organizationId},
+			#{localName},
+			#{registeredAddress},
+			#{defaultTimeZone},
+			#{phone},
+			#{name},
+			#{email},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdCompany">
+		update dbo.t_bd_company set
+        <if test="deleteFlag==0">
+            note = #{note},
+            website = #{website},
+            code = #{code},
+            associated_obj_id = #{associatedObjId},
+            contact_person = #{contactPerson},
+            default_language_id = #{defaultLanguageId},
+            tax_code = #{taxCode},
+            organization_id = #{organizationId},
+            local_name = #{localName},
+            registered_address = #{registeredAddress},
+            default_time_zone = #{defaultTimeZone},
+            phone = #{phone},
+            name = #{name},
+            email = #{email},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

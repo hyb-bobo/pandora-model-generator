@@ -1,0 +1,72 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.T700ProcessRouteWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.T700ProcessRoute">
+		insert into dbo.t_700_process_route (
+			id,
+			note,
+			product_id,
+			post_process_id,
+			factory_id,
+			description,
+			post_process_serial,
+			pre_process_id,
+			pre_process_serial,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{productId},
+			#{postProcessId},
+			#{factoryId},
+			#{description},
+			#{postProcessSerial},
+			#{preProcessId},
+			#{preProcessSerial},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.T700ProcessRoute">
+		update dbo.t_700_process_route set
+        <if test="deleteFlag==0">
+            note = #{note},
+            product_id = #{productId},
+            post_process_id = #{postProcessId},
+            factory_id = #{factoryId},
+            description = #{description},
+            post_process_serial = #{postProcessSerial},
+            pre_process_id = #{preProcessId},
+            pre_process_serial = #{preProcessSerial},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

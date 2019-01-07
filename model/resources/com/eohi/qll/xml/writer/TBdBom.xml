@@ -1,0 +1,75 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdBomWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdBom">
+		insert into dbo.t_bd_bom (
+			id,
+			child_item_id,
+			note,
+			parent_item_quantity,
+			child_item_quantity,
+			parent_item_id,
+			factory_id,
+			loss_rate,
+			version,
+			bom_head_id,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{childItemId},
+			#{note},
+			#{parentItemQuantity},
+			#{childItemQuantity},
+			#{parentItemId},
+			#{factoryId},
+			#{lossRate},
+			#{version},
+			#{bomHeadId},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdBom">
+		update dbo.t_bd_bom set
+        <if test="deleteFlag==0">
+            child_item_id = #{childItemId},
+            note = #{note},
+            parent_item_quantity = #{parentItemQuantity},
+            child_item_quantity = #{childItemQuantity},
+            parent_item_id = #{parentItemId},
+            factory_id = #{factoryId},
+            loss_rate = #{lossRate},
+            version = #{version},
+            bom_head_id = #{bomHeadId},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>

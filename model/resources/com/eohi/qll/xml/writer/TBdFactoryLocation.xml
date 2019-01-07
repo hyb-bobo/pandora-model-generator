@@ -1,0 +1,96 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eohi.qll.writer.TBdFactoryLocationWriter">
+
+	<insert id="insert" parameterType="com.eohi.qll.model.TBdFactoryLocation">
+		insert into dbo.t_bd_factory_location (
+			id,
+			note,
+			parent_location_id,
+			code,
+			associated_obj_id,
+			is_root,
+			level,
+			network_ip,
+			factory_id,
+			description,
+			logistic_x_coordinate,
+			entity_id,
+			type,
+			logistic_y_coordinate,
+			local_name,
+			logistic_z_coordinate,
+			name,
+            create_at,
+			create_by,
+			update_at,
+			update_by,
+			delete_at,
+			delete_by,
+			delete_flag,
+			data_version
+		) values (
+            #{id},
+			#{note},
+			#{parentLocationId},
+			#{code},
+			#{associatedObjId},
+			#{isRoot},
+			#{level},
+			#{networkIp},
+			#{factoryId},
+			#{description},
+			#{logisticXCoordinate},
+			#{entityId},
+			#{type},
+			#{logisticYCoordinate},
+			#{localName},
+			#{logisticZCoordinate},
+			#{name},
+            #{createAt},
+			#{createBy},
+			#{updateAt},
+			#{updateBy},
+			#{deleteAt},
+			#{deleteBy},
+			0,
+			1
+		)
+	</insert>
+
+	<update id="update" parameterType="com.eohi.qll.model.TBdFactoryLocation">
+		update dbo.t_bd_factory_location set
+        <if test="deleteFlag==0">
+            note = #{note},
+            parent_location_id = #{parentLocationId},
+            code = #{code},
+            associated_obj_id = #{associatedObjId},
+            is_root = #{isRoot},
+            level = #{level},
+            network_ip = #{networkIp},
+            factory_id = #{factoryId},
+            description = #{description},
+            logistic_x_coordinate = #{logisticXCoordinate},
+            entity_id = #{entityId},
+            type = #{type},
+            logistic_y_coordinate = #{logisticYCoordinate},
+            local_name = #{localName},
+            logistic_z_coordinate = #{logisticZCoordinate},
+            name = #{name},
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+        </if>
+        <if test="deleteFlag==1">
+            update_at = #{updateAt},
+			update_by = #{updateBy},
+			delete_at = #{deleteAt},
+			delete_by = #{deleteBy},
+			delete_flag = 1,
+        </if>
+        data_version = data_version + 1
+		where
+			id = #{id} and data_version = #{dataVersion}
+	</update>
+
+
+</mapper>
