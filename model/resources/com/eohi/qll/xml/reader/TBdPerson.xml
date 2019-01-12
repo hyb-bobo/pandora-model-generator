@@ -11,9 +11,9 @@
 		<result property="rfidCardNo" column="rfid_card_no" />
 		<result property="factoryId" column="factory_id" />
 		<result property="sex" column="sex" />
+		<result property="departmentId" column="department_id" />
 		<result property="mobile" column="mobile" />
 		<result property="nickleName" column="nickle_name" />
-		<result property="organizationId" column="organization_id" />
 		<result property="photoUrl" column="photo_url" />
 		<result property="weixin" column="weixin" />
 		<result property="positionId" column="position_id" />
@@ -41,9 +41,9 @@
 		<result property="rfidCardNo" column="rfid_card_no" />
 		<result property="factoryId" column="factory_id" />
 		<result property="sex" column="sex" />
+		<result property="departmentId" column="department_id" />
 		<result property="mobile" column="mobile" />
 		<result property="nickleName" column="nickle_name" />
-		<result property="organizationId" column="organization_id" />
 		<result property="photoUrl" column="photo_url" />
 		<result property="weixin" column="weixin" />
 		<result property="positionId" column="position_id" />
@@ -70,9 +70,9 @@
 		rfid_card_no,
 		factory_id,
 		sex,
+		department_id,
 		mobile,
 		nickle_name,
-		organization_id,
 		photo_url,
 		weixin,
 		position_id,

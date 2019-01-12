@@ -9,6 +9,7 @@
 		<result property="code" column="code" />
 		<result property="factoryLocationId" column="factory_location_id" />
 		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
 		<result property="name" column="name" />
 		<result property="description" column="description" />
 		<result property="type" column="type" />
@@ -30,6 +31,7 @@
 		<result property="code" column="code" />
 		<result property="factoryLocationId" column="factory_location_id" />
 		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
 		<result property="name" column="name" />
 		<result property="description" column="description" />
 		<result property="type" column="type" />
@@ -50,6 +52,7 @@
 		code,
 		factory_location_id,
 		associated_obj_id,
+		factory_id,
 		name,
 		description,
 		type,

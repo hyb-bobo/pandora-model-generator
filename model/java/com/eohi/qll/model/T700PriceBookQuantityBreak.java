@@ -12,14 +12,15 @@ import java.math.BigDecimal;
 public class T700PriceBookQuantityBreak extends BaseModel<String> {
 
 	private String priceBookId;
+	private BigDecimal unitLogisticCharge;
 	private String note;
-	private Integer sequenceNo;
-	private BigDecimal markup;
 	private Integer quantityTo;
-	private BigDecimal salesPrice;
-	private BigDecimal discount;
-	private BigDecimal netPrice;
+	private BigDecimal purchaseUnitPrice;
 	private Integer quantityFrom;
+	private BigDecimal salesUnitPrice;
+	private Integer sequenceNo;
+	private BigDecimal unitStorageCharge;
+	private BigDecimal unitCost;
 	private BigDecimal grossMargin;
 	private String currencyId;
 	private String salesUomId;
@@ -35,14 +36,15 @@ public class T700PriceBookQuantityBreak extends BaseModel<String> {
 	
 	public static final Enum businessColumns = new Enum(
 	 	"priceBookId", "price book id",
+	 	"unitLogisticCharge", "unit logistic charge",
 	 	"note", "note",
-	 	"sequenceNo", "sequence no",
-	 	"markup", "markup",
 	 	"quantityTo", "quantity to",
-	 	"salesPrice", "sales price",
-	 	"discount", "discount",
-	 	"netPrice", "net price",
+	 	"purchaseUnitPrice", "purchase unit price",
 	 	"quantityFrom", "quantity from",
+	 	"salesUnitPrice", "sales unit price",
+	 	"sequenceNo", "sequence no",
+	 	"unitStorageCharge", "unit storage charge",
+	 	"unitCost", "unit cost",
 	 	"grossMargin", "gross margin",
 	 	"currencyId", "currency id",
 	 	"salesUomId", "sales uom id"
@@ -56,28 +58,20 @@ public class T700PriceBookQuantityBreak extends BaseModel<String> {
 		this.priceBookId = priceBookId;
 	}
 	
+	public BigDecimal getUnitLogisticCharge() {
+		return unitLogisticCharge;
+	}
+
+	public void setUnitLogisticCharge(BigDecimal unitLogisticCharge) {
+		this.unitLogisticCharge = unitLogisticCharge;
+	}
+	
 	public String getNote() {
 		return note;
 	}
 
 	public void setNote(String note) {
 		this.note = note;
-	}
-	
-	public Integer getSequenceNo() {
-		return sequenceNo;
-	}
-
-	public void setSequenceNo(Integer sequenceNo) {
-		this.sequenceNo = sequenceNo;
-	}
-	
-	public BigDecimal getMarkup() {
-		return markup;
-	}
-
-	public void setMarkup(BigDecimal markup) {
-		this.markup = markup;
 	}
 	
 	public Integer getQuantityTo() {
@@ -88,28 +82,12 @@ public class T700PriceBookQuantityBreak extends BaseModel<String> {
 		this.quantityTo = quantityTo;
 	}
 	
-	public BigDecimal getSalesPrice() {
-		return salesPrice;
+	public BigDecimal getPurchaseUnitPrice() {
+		return purchaseUnitPrice;
 	}
 
-	public void setSalesPrice(BigDecimal salesPrice) {
-		this.salesPrice = salesPrice;
-	}
-	
-	public BigDecimal getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
-	}
-	
-	public BigDecimal getNetPrice() {
-		return netPrice;
-	}
-
-	public void setNetPrice(BigDecimal netPrice) {
-		this.netPrice = netPrice;
+	public void setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
+		this.purchaseUnitPrice = purchaseUnitPrice;
 	}
 	
 	public Integer getQuantityFrom() {
@@ -118,6 +96,38 @@ public class T700PriceBookQuantityBreak extends BaseModel<String> {
 
 	public void setQuantityFrom(Integer quantityFrom) {
 		this.quantityFrom = quantityFrom;
+	}
+	
+	public BigDecimal getSalesUnitPrice() {
+		return salesUnitPrice;
+	}
+
+	public void setSalesUnitPrice(BigDecimal salesUnitPrice) {
+		this.salesUnitPrice = salesUnitPrice;
+	}
+	
+	public Integer getSequenceNo() {
+		return sequenceNo;
+	}
+
+	public void setSequenceNo(Integer sequenceNo) {
+		this.sequenceNo = sequenceNo;
+	}
+	
+	public BigDecimal getUnitStorageCharge() {
+		return unitStorageCharge;
+	}
+
+	public void setUnitStorageCharge(BigDecimal unitStorageCharge) {
+		this.unitStorageCharge = unitStorageCharge;
+	}
+	
+	public BigDecimal getUnitCost() {
+		return unitCost;
+	}
+
+	public void setUnitCost(BigDecimal unitCost) {
+		this.unitCost = unitCost;
 	}
 	
 	public BigDecimal getGrossMargin() {

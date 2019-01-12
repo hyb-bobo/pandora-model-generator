@@ -17,6 +17,7 @@ public class TBdProcessParameter extends BaseModel<String> {
 	private String processId;
 	private String displayName;
 	private String factoryId;
+	private Integer valueType;
 	private String name;
 	private String descrition;
 	private String uomId;
@@ -38,6 +39,7 @@ public class TBdProcessParameter extends BaseModel<String> {
 	 	"processId", "process id",
 	 	"displayName", "display name",
 	 	"factoryId", "factory id",
+	 	"valueType", "value type",
 	 	"name", "name",
 	 	"descrition", "descrition",
 	 	"uomId", "uom id"
@@ -97,6 +99,14 @@ public class TBdProcessParameter extends BaseModel<String> {
 
 	public void setFactoryId(String factoryId) {
 		this.factoryId = factoryId;
+	}
+	
+	public Integer getValueType() {
+		return valueType;
+	}
+
+	public void setValueType(Integer valueType) {
+		this.valueType = valueType;
 	}
 	
 	public String getName() {

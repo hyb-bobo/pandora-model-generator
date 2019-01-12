@@ -17,9 +17,9 @@ public class TBdPerson extends BaseModel<String> {
 	private String rfidCardNo;
 	private String factoryId;
 	private Integer sex;
+	private String departmentId;
 	private String mobile;
 	private String nickleName;
-	private String organizationId;
 	private String photoUrl;
 	private String weixin;
 	private String positionId;
@@ -45,9 +45,9 @@ public class TBdPerson extends BaseModel<String> {
 	 	"rfidCardNo", "rfid card no",
 	 	"factoryId", "factory id",
 	 	"sex", "sex",
+	 	"departmentId", "department id",
 	 	"mobile", "mobile",
 	 	"nickleName", "nickle name",
-	 	"organizationId", "organization id",
 	 	"photoUrl", "photo url",
 	 	"weixin", "weixin",
 	 	"positionId", "position id",
@@ -113,6 +113,14 @@ public class TBdPerson extends BaseModel<String> {
 		this.sex = sex;
 	}
 	
+	public String getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
+	
 	public String getMobile() {
 		return mobile;
 	}
@@ -127,14 +135,6 @@ public class TBdPerson extends BaseModel<String> {
 
 	public void setNickleName(String nickleName) {
 		this.nickleName = nickleName;
-	}
-	
-	public String getOrganizationId() {
-		return organizationId;
-	}
-
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
 	}
 	
 	public String getPhotoUrl() {

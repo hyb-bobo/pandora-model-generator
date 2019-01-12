@@ -6,8 +6,8 @@
 		<id property="id" column="id" />
 		<result property="note" column="note" />
 		<result property="factoryId" column="factory_id" />
+		<result property="description" column="description" />
 		<result property="rootMaterialId" column="root_material_id" />
-		<result property="desc" column="desc" />
 		<result property="bomVersion" column="bom_version" />
         <result property="createAt" column="create_at" />
         <result property="createBy" column="create_by" />
@@ -24,8 +24,8 @@
 		<id property="id" column="id" />
 		<result property="note" column="note" />
 		<result property="factoryId" column="factory_id" />
+		<result property="description" column="description" />
 		<result property="rootMaterialId" column="root_material_id" />
-		<result property="desc" column="desc" />
 		<result property="bomVersion" column="bom_version" />
 		<result property="createAt" column="create_at" />
 		<result property="createBy" column="create_by" />
@@ -41,8 +41,8 @@
 		id,
 		note,
 		factory_id,
+		description,
 		root_material_id,
-		desc,
 		bom_version,
         create_at,
         create_by,

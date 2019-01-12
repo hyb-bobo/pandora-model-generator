@@ -15,10 +15,10 @@ public class TBdBom extends BaseModel<String> {
 	private String note;
 	private Integer parentItemQuantity;
 	private Integer childItemQuantity;
+	private Integer lineNo;
 	private String parentItemId;
 	private String factoryId;
 	private BigDecimal lossRate;
-	private Integer version;
 	private String bomHeadId;
 
 	@SkipJsonToString
@@ -35,10 +35,10 @@ public class TBdBom extends BaseModel<String> {
 	 	"note", "note",
 	 	"parentItemQuantity", "parent item quantity",
 	 	"childItemQuantity", "child item quantity",
+	 	"lineNo", "line no",
 	 	"parentItemId", "parent item id",
 	 	"factoryId", "factory id",
 	 	"lossRate", "loss rate",
-	 	"version", "version",
 	 	"bomHeadId", "bom head id"
 	); 
 	
@@ -74,6 +74,14 @@ public class TBdBom extends BaseModel<String> {
 		this.childItemQuantity = childItemQuantity;
 	}
 	
+	public Integer getLineNo() {
+		return lineNo;
+	}
+
+	public void setLineNo(Integer lineNo) {
+		this.lineNo = lineNo;
+	}
+	
 	public String getParentItemId() {
 		return parentItemId;
 	}
@@ -96,14 +104,6 @@ public class TBdBom extends BaseModel<String> {
 
 	public void setLossRate(BigDecimal lossRate) {
 		this.lossRate = lossRate;
-	}
-	
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 	
 	public String getBomHeadId() {

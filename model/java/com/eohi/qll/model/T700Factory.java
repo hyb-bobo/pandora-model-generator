@@ -14,6 +14,7 @@ public class T700Factory extends BaseModel<String> {
 	private String note;
 	private String code;
 	private String address;
+	private Integer isIotAvailable;
 	private String name;
 	private String description;
 	private String onsitePersonId;
@@ -34,6 +35,7 @@ public class T700Factory extends BaseModel<String> {
 	 	"note", "note",
 	 	"code", "code",
 	 	"address", "address",
+	 	"isIotAvailable", "is iot available",
 	 	"name", "name",
 	 	"description", "description",
 	 	"onsitePersonId", "onsite person id",
@@ -71,6 +73,14 @@ public class T700Factory extends BaseModel<String> {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public Integer getIsIotAvailable() {
+		return isIotAvailable;
+	}
+
+	public void setIsIotAvailable(Integer isIotAvailable) {
+		this.isIotAvailable = isIotAvailable;
 	}
 	
 	public String getName() {

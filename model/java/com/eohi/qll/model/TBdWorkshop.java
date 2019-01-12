@@ -10,18 +10,19 @@ import com.eohi.qll.tag.Enum;
 @PKType(setType = String.class)
 public class TBdWorkshop extends BaseModel<String> {
 
-	private String localName;
 	private String note;
 	private String viceLeaderId;
 	private String code;
-	private String factoryLocationId;
 	private Integer associatedObjId;
-	private String contactPersonId;
-	private String name;
+	private String factoryId;
 	private String telephone;
 	private Integer type;
-	private Integer status;
 	private String leaderId;
+	private String localName;
+	private String factoryLocationId;
+	private String contactPersonId;
+	private String name;
+	private Integer status;
 
 	@SkipJsonToString
 	public String getId() {
@@ -33,27 +34,20 @@ public class TBdWorkshop extends BaseModel<String> {
 	}
 	
 	public static final Enum businessColumns = new Enum(
-	 	"localName", "local name",
 	 	"note", "note",
 	 	"viceLeaderId", "vice leader id",
 	 	"code", "code",
-	 	"factoryLocationId", "factory location id",
 	 	"associatedObjId", "associated obj id",
-	 	"contactPersonId", "contact person id",
-	 	"name", "name",
+	 	"factoryId", "factory id",
 	 	"telephone", "telephone",
 	 	"type", "type",
-	 	"status", "status",
-	 	"leaderId", "leader id"
+	 	"leaderId", "leader id",
+	 	"localName", "local name",
+	 	"factoryLocationId", "factory location id",
+	 	"contactPersonId", "contact person id",
+	 	"name", "name",
+	 	"status", "status"
 	); 
-	
-	public String getLocalName() {
-		return localName;
-	}
-
-	public void setLocalName(String localName) {
-		this.localName = localName;
-	}
 	
 	public String getNote() {
 		return note;
@@ -79,14 +73,6 @@ public class TBdWorkshop extends BaseModel<String> {
 		this.code = code;
 	}
 	
-	public String getFactoryLocationId() {
-		return factoryLocationId;
-	}
-
-	public void setFactoryLocationId(String factoryLocationId) {
-		this.factoryLocationId = factoryLocationId;
-	}
-	
 	public Integer getAssociatedObjId() {
 		return associatedObjId;
 	}
@@ -95,20 +81,12 @@ public class TBdWorkshop extends BaseModel<String> {
 		this.associatedObjId = associatedObjId;
 	}
 	
-	public String getContactPersonId() {
-		return contactPersonId;
+	public String getFactoryId() {
+		return factoryId;
 	}
 
-	public void setContactPersonId(String contactPersonId) {
-		this.contactPersonId = contactPersonId;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setFactoryId(String factoryId) {
+		this.factoryId = factoryId;
 	}
 	
 	public String getTelephone() {
@@ -127,20 +105,52 @@ public class TBdWorkshop extends BaseModel<String> {
 		this.type = type;
 	}
 	
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-	
 	public String getLeaderId() {
 		return leaderId;
 	}
 
 	public void setLeaderId(String leaderId) {
 		this.leaderId = leaderId;
+	}
+	
+	public String getLocalName() {
+		return localName;
+	}
+
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+	
+	public String getFactoryLocationId() {
+		return factoryLocationId;
+	}
+
+	public void setFactoryLocationId(String factoryLocationId) {
+		this.factoryLocationId = factoryLocationId;
+	}
+	
+	public String getContactPersonId() {
+		return contactPersonId;
+	}
+
+	public void setContactPersonId(String contactPersonId) {
+		this.contactPersonId = contactPersonId;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 }

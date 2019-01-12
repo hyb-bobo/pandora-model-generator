@@ -34,8 +34,8 @@ public class Main {
             try {
                 table = db.queryTables(tableName);
                 String s = StringUtil.toUpperCamelCase(tableName);
-                System.out.println(  "\""+s+ "\",\""+table.getComment()+"\",\""+"PSProcessorQLL\",");
-                sb.append("\""+s+ "\",\""+table.getComment()+"\",\""+"PSProcessorQLL\",").append("\n");
+//                System.out.println(  "\""+s+ "\",\""+table.getComment()+"\",\""+"PSProcessorQLL\",");
+                sb.append("\""+s.substring(3)+ "\",\""+table.getComment()+"\",\""+"PSProcessorQLL\",").append("\n");
                 new FMGenerator(Config.properties, table)
                         .replace("$className", table.getClassName())
                         .replace("$package", Config.basePackage.replace(".", "/"))
@@ -55,6 +55,12 @@ public class Main {
         }
         try {
             byteOutStream(sb.toString(),"ps");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Main main = new Main();
+        try {
+            main.getStr();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,7 +88,6 @@ public class Main {
 
     }
 
-    @Test
     public  void getStr() throws Exception {
         String encoding = "UTF-8";
         File file = new File("D:\\ps\\ps.txt");

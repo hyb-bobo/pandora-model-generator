@@ -7,6 +7,7 @@
 		<result property="note" column="note" />
 		<result property="code" column="code" />
 		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
 		<result property="ipAddress" column="ip_address" />
 		<result property="type" column="type" />
 		<result property="pictureGroupId" column="picture_group_id" />
@@ -37,6 +38,7 @@
 		<result property="note" column="note" />
 		<result property="code" column="code" />
 		<result property="associatedObjId" column="associated_obj_id" />
+		<result property="factoryId" column="factory_id" />
 		<result property="ipAddress" column="ip_address" />
 		<result property="type" column="type" />
 		<result property="pictureGroupId" column="picture_group_id" />
@@ -66,6 +68,7 @@
 		note,
 		code,
 		associated_obj_id,
+		factory_id,
 		ip_address,
 		type,
 		picture_group_id,

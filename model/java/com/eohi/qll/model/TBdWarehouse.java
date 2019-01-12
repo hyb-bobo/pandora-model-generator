@@ -15,6 +15,7 @@ public class TBdWarehouse extends BaseModel<String> {
 	private String code;
 	private String factoryLocationId;
 	private Integer associatedObjId;
+	private String factoryId;
 	private String name;
 	private String description;
 	private Integer type;
@@ -34,6 +35,7 @@ public class TBdWarehouse extends BaseModel<String> {
 	 	"code", "code",
 	 	"factoryLocationId", "factory location id",
 	 	"associatedObjId", "associated obj id",
+	 	"factoryId", "factory id",
 	 	"name", "name",
 	 	"description", "description",
 	 	"type", "type"
@@ -77,6 +79,14 @@ public class TBdWarehouse extends BaseModel<String> {
 
 	public void setAssociatedObjId(Integer associatedObjId) {
 		this.associatedObjId = associatedObjId;
+	}
+	
+	public String getFactoryId() {
+		return factoryId;
+	}
+
+	public void setFactoryId(String factoryId) {
+		this.factoryId = factoryId;
 	}
 	
 	public String getName() {

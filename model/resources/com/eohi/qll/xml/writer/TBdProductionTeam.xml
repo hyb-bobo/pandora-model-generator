@@ -5,7 +5,6 @@
 	<insert id="insert" parameterType="com.eohi.qll.model.TBdProductionTeam">
 		insert into dbo.t_bd_production_team (
 			id,
-			organization_id,
 			local_name,
 			note,
 			code,
@@ -13,7 +12,6 @@
 			factory_id,
 			name,
 			description,
-			default_location_id,
 			leader_id,
 			status,
             create_at,
@@ -26,7 +24,6 @@
 			data_version
 		) values (
             #{id},
-			#{organizationId},
 			#{localName},
 			#{note},
 			#{code},
@@ -34,7 +31,6 @@
 			#{factoryId},
 			#{name},
 			#{description},
-			#{defaultLocationId},
 			#{leaderId},
 			#{status},
             #{createAt},
@@ -51,7 +47,6 @@
 	<update id="update" parameterType="com.eohi.qll.model.TBdProductionTeam">
 		update dbo.t_bd_production_team set
         <if test="deleteFlag==0">
-            organization_id = #{organizationId},
             local_name = #{localName},
             note = #{note},
             code = #{code},
@@ -59,7 +54,6 @@
             factory_id = #{factoryId},
             name = #{name},
             description = #{description},
-            default_location_id = #{defaultLocationId},
             leader_id = #{leaderId},
             status = #{status},
             update_at = #{updateAt},

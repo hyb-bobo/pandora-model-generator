@@ -11,6 +11,7 @@
 		<result property="processId" column="process_id" />
 		<result property="displayName" column="display_name" />
 		<result property="factoryId" column="factory_id" />
+		<result property="valueType" column="value_type" />
 		<result property="name" column="name" />
 		<result property="descrition" column="descrition" />
 		<result property="uomId" column="uom_id" />
@@ -34,6 +35,7 @@
 		<result property="processId" column="process_id" />
 		<result property="displayName" column="display_name" />
 		<result property="factoryId" column="factory_id" />
+		<result property="valueType" column="value_type" />
 		<result property="name" column="name" />
 		<result property="descrition" column="descrition" />
 		<result property="uomId" column="uom_id" />
@@ -56,6 +58,7 @@
 		process_id,
 		display_name,
 		factory_id,
+		value_type,
 		name,
 		descrition,
 		uom_id,

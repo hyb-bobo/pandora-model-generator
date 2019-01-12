@@ -8,6 +8,7 @@
 		<result property="note" column="note" />
 		<result property="code" column="code" />
 		<result property="address" column="address" />
+		<result property="isIotAvailable" column="is_iot_available" />
 		<result property="name" column="name" />
 		<result property="description" column="description" />
 		<result property="onsitePersonId" column="onsite_person_id" />
@@ -30,6 +31,7 @@
 		<result property="note" column="note" />
 		<result property="code" column="code" />
 		<result property="address" column="address" />
+		<result property="isIotAvailable" column="is_iot_available" />
 		<result property="name" column="name" />
 		<result property="description" column="description" />
 		<result property="onsitePersonId" column="onsite_person_id" />
@@ -51,6 +53,7 @@
 		note,
 		code,
 		address,
+		is_iot_available,
 		name,
 		description,
 		onsite_person_id,

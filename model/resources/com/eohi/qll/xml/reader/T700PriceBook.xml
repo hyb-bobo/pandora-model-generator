@@ -5,11 +5,14 @@
 	<resultMap id="t700PriceBookResultMap" type="com.eohi.qll.model.T700PriceBook">
 		<id property="id" column="id" />
 		<result property="approvalStatus" column="approval_status" />
+		<result property="approver" column="approver" />
 		<result property="note" column="note" />
 		<result property="priceMethod" column="price_method" />
 		<result property="supplyDemandRelationId" column="supply_demand_relation_id" />
+		<result property="submittor" column="submittor" />
+		<result property="submitAt" column="submit_at" />
+		<result property="approveAt" column="approve_at" />
 		<result property="expireDate" column="expire_date" />
-		<result property="purchasePrice" column="purchase_price" />
 		<result property="effectiveDate" column="effective_date" />
         <result property="createAt" column="create_at" />
         <result property="createBy" column="create_by" />
@@ -25,11 +28,14 @@
 	<resultMap id="t700PriceBookResultMap2" type="com.eohi.qll.model.T700PriceBook">
 		<id property="id" column="id" />
 		<result property="approvalStatus" column="approval_status" />
+		<result property="approver" column="approver" />
 		<result property="note" column="note" />
 		<result property="priceMethod" column="price_method" />
 		<result property="supplyDemandRelationId" column="supply_demand_relation_id" />
+		<result property="submittor" column="submittor" />
+		<result property="submitAt" column="submit_at" />
+		<result property="approveAt" column="approve_at" />
 		<result property="expireDate" column="expire_date" />
-		<result property="purchasePrice" column="purchase_price" />
 		<result property="effectiveDate" column="effective_date" />
 		<result property="createAt" column="create_at" />
 		<result property="createBy" column="create_by" />
@@ -44,11 +50,14 @@
 	<sql id="selectClause">
 		id,
 		approval_status,
+		approver,
 		note,
 		price_method,
 		supply_demand_relation_id,
+		submittor,
+		submit_at,
+		approve_at,
 		expire_date,
-		purchase_price,
 		effective_date,
         create_at,
         create_by,

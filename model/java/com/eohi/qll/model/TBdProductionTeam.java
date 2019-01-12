@@ -10,7 +10,6 @@ import com.eohi.qll.tag.Enum;
 @PKType(setType = String.class)
 public class TBdProductionTeam extends BaseModel<String> {
 
-	private String organizationId;
 	private String localName;
 	private String note;
 	private String code;
@@ -18,7 +17,6 @@ public class TBdProductionTeam extends BaseModel<String> {
 	private String factoryId;
 	private String name;
 	private String description;
-	private String defaultLocationId;
 	private String leaderId;
 	private Integer status;
 
@@ -32,7 +30,6 @@ public class TBdProductionTeam extends BaseModel<String> {
 	}
 	
 	public static final Enum businessColumns = new Enum(
-	 	"organizationId", "organization id",
 	 	"localName", "local name",
 	 	"note", "note",
 	 	"code", "code",
@@ -40,18 +37,9 @@ public class TBdProductionTeam extends BaseModel<String> {
 	 	"factoryId", "factory id",
 	 	"name", "name",
 	 	"description", "description",
-	 	"defaultLocationId", "default location id",
 	 	"leaderId", "leader id",
 	 	"status", "status"
 	); 
-	
-	public String getOrganizationId() {
-		return organizationId;
-	}
-
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
-	}
 	
 	public String getLocalName() {
 		return localName;
@@ -107,14 +95,6 @@ public class TBdProductionTeam extends BaseModel<String> {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public String getDefaultLocationId() {
-		return defaultLocationId;
-	}
-
-	public void setDefaultLocationId(String defaultLocationId) {
-		this.defaultLocationId = defaultLocationId;
 	}
 	
 	public String getLeaderId() {

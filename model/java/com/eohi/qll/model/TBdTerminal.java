@@ -13,6 +13,7 @@ public class TBdTerminal extends BaseModel<String> {
 	private String note;
 	private String code;
 	private Integer associatedObjId;
+	private String factoryId;
 	private String ipAddress;
 	private Integer type;
 	private String pictureGroupId;
@@ -41,6 +42,7 @@ public class TBdTerminal extends BaseModel<String> {
 	 	"note", "note",
 	 	"code", "code",
 	 	"associatedObjId", "associated obj id",
+	 	"factoryId", "factory id",
 	 	"ipAddress", "ip address",
 	 	"type", "type",
 	 	"pictureGroupId", "picture group id",
@@ -79,6 +81,14 @@ public class TBdTerminal extends BaseModel<String> {
 
 	public void setAssociatedObjId(Integer associatedObjId) {
 		this.associatedObjId = associatedObjId;
+	}
+	
+	public String getFactoryId() {
+		return factoryId;
+	}
+
+	public void setFactoryId(String factoryId) {
+		this.factoryId = factoryId;
 	}
 	
 	public String getIpAddress() {

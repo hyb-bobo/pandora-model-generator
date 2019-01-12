@@ -5,17 +5,18 @@
 	<resultMap id="t700MemberResultMap" type="com.eohi.qll.model.T700Member">
 		<id property="id" column="id" />
 		<result property="approvalStatus" column="approval_status" />
-		<result property="localName" column="local_name" />
-		<result property="isEohiCustomer" column="is_eohi_customer" />
-		<result property="iotEnable" column="iot_enable" />
 		<result property="note" column="note" />
-		<result property="companyId" column="company_id" />
-		<result property="creditLevel" column="credit_level" />
 		<result property="productionMode" column="production_mode" />
-		<result property="name" column="name" />
+		<result property="markup" column="markup" />
 		<result property="description" column="description" />
+		<result property="discount" column="discount" />
 		<result property="type" column="type" />
 		<result property="approvedAt" column="approved_at" />
+		<result property="localName" column="local_name" />
+		<result property="isEohiCustomer" column="is_eohi_customer" />
+		<result property="companyId" column="company_id" />
+		<result property="creditLevel" column="credit_level" />
+		<result property="name" column="name" />
         <result property="createAt" column="create_at" />
         <result property="createBy" column="create_by" />
         <result property="updateAt" column="update_at" />
@@ -30,17 +31,18 @@
 	<resultMap id="t700MemberResultMap2" type="com.eohi.qll.model.T700Member">
 		<id property="id" column="id" />
 		<result property="approvalStatus" column="approval_status" />
-		<result property="localName" column="local_name" />
-		<result property="isEohiCustomer" column="is_eohi_customer" />
-		<result property="iotEnable" column="iot_enable" />
 		<result property="note" column="note" />
-		<result property="companyId" column="company_id" />
-		<result property="creditLevel" column="credit_level" />
 		<result property="productionMode" column="production_mode" />
-		<result property="name" column="name" />
+		<result property="markup" column="markup" />
 		<result property="description" column="description" />
+		<result property="discount" column="discount" />
 		<result property="type" column="type" />
 		<result property="approvedAt" column="approved_at" />
+		<result property="localName" column="local_name" />
+		<result property="isEohiCustomer" column="is_eohi_customer" />
+		<result property="companyId" column="company_id" />
+		<result property="creditLevel" column="credit_level" />
+		<result property="name" column="name" />
 		<result property="createAt" column="create_at" />
 		<result property="createBy" column="create_by" />
 		<result property="updateAt" column="update_at" />
@@ -54,17 +56,18 @@
 	<sql id="selectClause">
 		id,
 		approval_status,
-		local_name,
-		is_eohi_customer,
-		iot_enable,
 		note,
-		company_id,
-		credit_level,
 		production_mode,
-		name,
+		markup,
 		description,
+		discount,
 		type,
 		approved_at,
+		local_name,
+		is_eohi_customer,
+		company_id,
+		credit_level,
+		name,
         create_at,
         create_by,
         update_at,

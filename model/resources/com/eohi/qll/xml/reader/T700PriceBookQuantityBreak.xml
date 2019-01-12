@@ -5,14 +5,15 @@
 	<resultMap id="t700PriceBookQuantityBreakResultMap" type="com.eohi.qll.model.T700PriceBookQuantityBreak">
 		<id property="id" column="id" />
 		<result property="priceBookId" column="price_book_id" />
+		<result property="unitLogisticCharge" column="unit_logistic_charge" />
 		<result property="note" column="note" />
-		<result property="sequenceNo" column="sequence_no" />
-		<result property="markup" column="markup" />
 		<result property="quantityTo" column="quantity_to" />
-		<result property="salesPrice" column="sales_price" />
-		<result property="discount" column="discount" />
-		<result property="netPrice" column="net_price" />
+		<result property="purchaseUnitPrice" column="purchase_unit_price" />
 		<result property="quantityFrom" column="quantity_from" />
+		<result property="salesUnitPrice" column="sales_unit_price" />
+		<result property="sequenceNo" column="sequence_no" />
+		<result property="unitStorageCharge" column="unit_storage_charge" />
+		<result property="unitCost" column="unit_cost" />
 		<result property="grossMargin" column="gross_margin" />
 		<result property="currencyId" column="currency_id" />
 		<result property="salesUomId" column="sales_uom_id" />
@@ -30,14 +31,15 @@
 	<resultMap id="t700PriceBookQuantityBreakResultMap2" type="com.eohi.qll.model.T700PriceBookQuantityBreak">
 		<id property="id" column="id" />
 		<result property="priceBookId" column="price_book_id" />
+		<result property="unitLogisticCharge" column="unit_logistic_charge" />
 		<result property="note" column="note" />
-		<result property="sequenceNo" column="sequence_no" />
-		<result property="markup" column="markup" />
 		<result property="quantityTo" column="quantity_to" />
-		<result property="salesPrice" column="sales_price" />
-		<result property="discount" column="discount" />
-		<result property="netPrice" column="net_price" />
+		<result property="purchaseUnitPrice" column="purchase_unit_price" />
 		<result property="quantityFrom" column="quantity_from" />
+		<result property="salesUnitPrice" column="sales_unit_price" />
+		<result property="sequenceNo" column="sequence_no" />
+		<result property="unitStorageCharge" column="unit_storage_charge" />
+		<result property="unitCost" column="unit_cost" />
 		<result property="grossMargin" column="gross_margin" />
 		<result property="currencyId" column="currency_id" />
 		<result property="salesUomId" column="sales_uom_id" />
@@ -54,14 +56,15 @@
 	<sql id="selectClause">
 		id,
 		price_book_id,
+		unit_logistic_charge,
 		note,
-		sequence_no,
-		markup,
 		quantity_to,
-		sales_price,
-		discount,
-		net_price,
+		purchase_unit_price,
 		quantity_from,
+		sales_unit_price,
+		sequence_no,
+		unit_storage_charge,
+		unit_cost,
 		gross_margin,
 		currency_id,
 		sales_uom_id,

@@ -8,9 +8,13 @@
 		<result property="demanderId" column="demander_id" />
 		<result property="note" column="note" />
 		<result property="supplierId" column="supplier_id" />
+		<result property="demandFactoryId" column="demand_factory_id" />
 		<result property="productId" column="product_id" />
+		<result property="supplyFactoryId" column="supply_factory_id" />
 		<result property="supplyStatus" column="supply_status" />
+		<result property="stopSupplyAt" column="stop_supply_at" />
 		<result property="centificateDate" column="centificate_date" />
+		<result property="startSupplyAt" column="start_supply_at" />
         <result property="createAt" column="create_at" />
         <result property="createBy" column="create_by" />
         <result property="updateAt" column="update_at" />
@@ -28,9 +32,13 @@
 		<result property="demanderId" column="demander_id" />
 		<result property="note" column="note" />
 		<result property="supplierId" column="supplier_id" />
+		<result property="demandFactoryId" column="demand_factory_id" />
 		<result property="productId" column="product_id" />
+		<result property="supplyFactoryId" column="supply_factory_id" />
 		<result property="supplyStatus" column="supply_status" />
+		<result property="stopSupplyAt" column="stop_supply_at" />
 		<result property="centificateDate" column="centificate_date" />
+		<result property="startSupplyAt" column="start_supply_at" />
 		<result property="createAt" column="create_at" />
 		<result property="createBy" column="create_by" />
 		<result property="updateAt" column="update_at" />
@@ -47,9 +55,13 @@
 		demander_id,
 		note,
 		supplier_id,
+		demand_factory_id,
 		product_id,
+		supply_factory_id,
 		supply_status,
+		stop_supply_at,
 		centificate_date,
+		start_supply_at,
         create_at,
         create_by,
         update_at,

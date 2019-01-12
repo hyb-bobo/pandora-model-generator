@@ -12,8 +12,8 @@ public class TBdBomHead extends BaseModel<String> {
 
 	private String note;
 	private String factoryId;
+	private String description;
 	private String rootMaterialId;
-	private String desc;
 	private Integer bomVersion;
 
 	@SkipJsonToString
@@ -28,8 +28,8 @@ public class TBdBomHead extends BaseModel<String> {
 	public static final Enum businessColumns = new Enum(
 	 	"note", "note",
 	 	"factoryId", "factory id",
+	 	"description", "description",
 	 	"rootMaterialId", "root material id",
-	 	"desc", "desc",
 	 	"bomVersion", "bom version"
 	); 
 	
@@ -49,20 +49,20 @@ public class TBdBomHead extends BaseModel<String> {
 		this.factoryId = factoryId;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public String getRootMaterialId() {
 		return rootMaterialId;
 	}
 
 	public void setRootMaterialId(String rootMaterialId) {
 		this.rootMaterialId = rootMaterialId;
-	}
-	
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
 	}
 	
 	public Integer getBomVersion() {

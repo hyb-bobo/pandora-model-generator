@@ -10,11 +10,11 @@
 		<result property="note" column="note" />
 		<result property="def1" column="def1" />
 		<result property="def2" column="def2" />
-		<result property="off shelvesAt" column="off_ shelves_at" />
 		<result property="factoryId" column="factory_id" />
 		<result property="description" column="description" />
 		<result property="capacityUomId" column="capacity_uom_id" />
 		<result property="onShelvesAt" column="on_shelves_at" />
+		<result property="offShelvesAt" column="off_shelves_at" />
 		<result property="localName" column="local_name" />
 		<result property="itemId" column="item_id" />
 		<result property="productCategoryId" column="product_category_id" />
@@ -46,11 +46,11 @@
 		<result property="note" column="note" />
 		<result property="def1" column="def1" />
 		<result property="def2" column="def2" />
-		<result property="off shelvesAt" column="off_ shelves_at" />
 		<result property="factoryId" column="factory_id" />
 		<result property="description" column="description" />
 		<result property="capacityUomId" column="capacity_uom_id" />
 		<result property="onShelvesAt" column="on_shelves_at" />
+		<result property="offShelvesAt" column="off_shelves_at" />
 		<result property="localName" column="local_name" />
 		<result property="itemId" column="item_id" />
 		<result property="productCategoryId" column="product_category_id" />
@@ -81,11 +81,11 @@
 		note,
 		def1,
 		def2,
-		off_ shelves_at,
 		factory_id,
 		description,
 		capacity_uom_id,
 		on_shelves_at,
+		off_shelves_at,
 		local_name,
 		item_id,
 		product_category_id,

@@ -17,11 +17,11 @@ public class T700Product extends BaseModel<String> {
 	private String note;
 	private String def1;
 	private String def2;
-	private String off shelvesAt;
 	private String factoryId;
 	private String description;
 	private String capacityUomId;
 	private String onShelvesAt;
+	private String offShelvesAt;
 	private String localName;
 	private String itemId;
 	private String productCategoryId;
@@ -51,11 +51,11 @@ public class T700Product extends BaseModel<String> {
 	 	"note", "note",
 	 	"def1", "def1",
 	 	"def2", "def2",
-	 	"off shelvesAt", "off  shelves at",
 	 	"factoryId", "factory id",
 	 	"description", "description",
 	 	"capacityUomId", "capacity uom id",
 	 	"onShelvesAt", "on shelves at",
+	 	"offShelvesAt", "off shelves at",
 	 	"localName", "local name",
 	 	"itemId", "item id",
 	 	"productCategoryId", "product category id",
@@ -118,14 +118,6 @@ public class T700Product extends BaseModel<String> {
 		this.def2 = def2;
 	}
 	
-	public String getOff shelvesAt() {
-		return off shelvesAt;
-	}
-
-	public void setOff shelvesAt(String off shelvesAt) {
-		this.off shelvesAt = off shelvesAt;
-	}
-	
 	public String getFactoryId() {
 		return factoryId;
 	}
@@ -156,6 +148,14 @@ public class T700Product extends BaseModel<String> {
 
 	public void setOnShelvesAt(String onShelvesAt) {
 		this.onShelvesAt = onShelvesAt;
+	}
+	
+	public String getOffShelvesAt() {
+		return offShelvesAt;
+	}
+
+	public void setOffShelvesAt(String offShelvesAt) {
+		this.offShelvesAt = offShelvesAt;
 	}
 	
 	public String getLocalName() {

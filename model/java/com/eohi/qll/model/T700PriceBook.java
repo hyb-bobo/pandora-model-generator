@@ -5,18 +5,20 @@ import com.realtech.pandora.myAnnotation.PKType;
 import com.eohi.qll.myAnnotation.SkipJsonToString;
 import com.eohi.qll.tag.Enum;
 
-import java.math.BigDecimal;
 
 
 @PKType(setType = String.class)
 public class T700PriceBook extends BaseModel<String> {
 
 	private Integer approvalStatus;
+	private String approver;
 	private String note;
 	private Integer priceMethod;
 	private String supplyDemandRelationId;
+	private String submittor;
+	private String submitAt;
+	private String approveAt;
 	private String expireDate;
-	private BigDecimal purchasePrice;
 	private String effectiveDate;
 
 	@SkipJsonToString
@@ -30,11 +32,14 @@ public class T700PriceBook extends BaseModel<String> {
 	
 	public static final Enum businessColumns = new Enum(
 	 	"approvalStatus", "approval status",
+	 	"approver", "approver",
 	 	"note", "note",
 	 	"priceMethod", "price method",
 	 	"supplyDemandRelationId", "supply demand relation id",
+	 	"submittor", "submittor",
+	 	"submitAt", "submit at",
+	 	"approveAt", "approve at",
 	 	"expireDate", "expire date",
-	 	"purchasePrice", "purchase price",
 	 	"effectiveDate", "effective date"
 	); 
 	
@@ -44,6 +49,14 @@ public class T700PriceBook extends BaseModel<String> {
 
 	public void setApprovalStatus(Integer approvalStatus) {
 		this.approvalStatus = approvalStatus;
+	}
+	
+	public String getApprover() {
+		return approver;
+	}
+
+	public void setApprover(String approver) {
+		this.approver = approver;
 	}
 	
 	public String getNote() {
@@ -70,20 +83,36 @@ public class T700PriceBook extends BaseModel<String> {
 		this.supplyDemandRelationId = supplyDemandRelationId;
 	}
 	
+	public String getSubmittor() {
+		return submittor;
+	}
+
+	public void setSubmittor(String submittor) {
+		this.submittor = submittor;
+	}
+	
+	public String getSubmitAt() {
+		return submitAt;
+	}
+
+	public void setSubmitAt(String submitAt) {
+		this.submitAt = submitAt;
+	}
+	
+	public String getApproveAt() {
+		return approveAt;
+	}
+
+	public void setApproveAt(String approveAt) {
+		this.approveAt = approveAt;
+	}
+	
 	public String getExpireDate() {
 		return expireDate;
 	}
 
 	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
-	}
-	
-	public BigDecimal getPurchasePrice() {
-		return purchasePrice;
-	}
-
-	public void setPurchasePrice(BigDecimal purchasePrice) {
-		this.purchasePrice = purchasePrice;
 	}
 	
 	public String getEffectiveDate() {

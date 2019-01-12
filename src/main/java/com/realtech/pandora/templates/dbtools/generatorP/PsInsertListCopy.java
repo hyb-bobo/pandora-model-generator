@@ -1,6 +1,11 @@
 package com.realtech.pandora.templates.dbtools.generatorP;
 
+import com.realtech.pandora.constants.BillTypeEnum;
+import com.realtech.pandora.model.TEamPlanTask;
+import com.realtech.pandora.model.base.BaseModel;
+import com.realtech.pandora.model.persistent.SqlReplyModel;
 import com.realtech.pandora.templates.dbtools.generatorAll.*;
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -114,10 +119,10 @@ public class PsInsertListCopy {
                 "\t\t\t" + tableName + " " + _TableNameV + " = (" + tableName + ")pojo;\n" +
                 "\t\t\treturn process" + tableName + "(" + _TableNameV + ", sql_session, refer_processor);\n" +
                 "\t\t}");*/
-        sbGeneraPSProcessor.append("else if(pojo_type == BillTypeEnum." + _TableNameH + ") {\n" +
-                "\t\t\t/* 执行'" + chinaseTableName + "'实体数据库操作 */\n" +
-                "\t\t\t" + tableName + " " + _TableNameV + " = (" + tableName + ")pojo;\n" +
-                "\t\t\treturn process" + tableName + "(" + _TableNameV + ", sql_session, refer_processor);\n" +
+        sbGeneraPSProcessor.append("else if(pojo_type == BillTypeEnum." + _TableNameH.substring(2,_TableNameH.length()-1) + ") {\n" +
+                "\t\t\t/* 执行'" + chinaseTableName.substring(1,chinaseTableName.length()-1)  + "'实体数据库操作 */\n" +
+                "\t\t\t" + tableName.substring(1,tableName.length()-1) + " " + _TableNameV.substring(1,_TableNameV.length()-1) + " = (" + tableName.substring(1,tableName.length()-1)  + ")pojo;\n" +
+                "\t\t\treturn process" + tableName.substring(1,tableName.length()-1) + "(" + _TableNameV.substring(1,_TableNameV.length()-1) + ", sql_session, refer_processor);\n" +
                 "\t\t}").append("\n");
     }
 
@@ -139,17 +144,18 @@ public class PsInsertListCopy {
                 "\t}");
         System.out.println();*/
         sbGeneraPSProcessor.append("/**\n" +
-                "\t * 执行'" + tableName + "<" + chinaseTableName + ">'的数据库持久化原子操作\n" +
+                "\t * 执行'" + tableName.substring(1,tableName.length()-1) + "<" + chinaseTableName.substring(1,chinaseTableName.length()-1) + ">'的数据库持久化原子操作\n" +
                 "\t * @param " + _TableNameL + "\n" +
                 "\t * @param sql_session\n" +
                 "\t * @param refer_processor\n" +
                 "\t * @return SqlReplyModel\n" +
                 "\t * @throws\n" +
                 "\t */\n" +
-                "\tpublic SqlReplyModel process" + tableName + "(" + tableName + " " + _TableNameL + ", SqlSession sql_session, ReferenceProcessor<BaseModel> refer_processor) {\n" +
-                "\t\tPersistenceUtil<" + tableName + "> persister = new PersistenceUtil<" + tableName + ">();\n" +
-                "\t\treturn persister.persist(" + _TableNameL + ", sql_session, " + tableName + "Writer.class, refer_processor);\n" +
+                "\tpublic SqlReplyModel process" + tableName.substring(1,tableName.length()-1) + "(" + tableName.substring(1,tableName.length()-1) + " " + _TableNameL.substring(1,_TableNameL.length()-1) + ", SqlSession sql_session, ReferenceProcessor<BaseModel> refer_processor) {\n" +
+                "\t\tPersistenceUtil<" + tableName.substring(1,tableName.length()-1)  + "> persister = new PersistenceUtil<" + tableName.substring(1,tableName.length()-1)  + ">();\n" +
+                "\t\treturn persister.persist(" +  _TableNameL.substring(1,_TableNameL.length()-1) + ", sql_session, " + tableName.substring(1,tableName.length()-1)  + "Writer.class, refer_processor);\n" +
                 "\t}").append("\n");
+
     }
 
     public void generaBillTypeEnum(String tableName, String chinaseTableName,StringBuilder sbGeneraBillTypeEnum) {
@@ -157,7 +163,7 @@ public class PsInsertListCopy {
         _TableNameH = _TableNameL.toUpperCase();
         _TableNameV = tableName.substring(0, 1).toLowerCase() + tableName.substring(1);
 //        System.out.println(_TableNameH + "(" + "code" + ", \"" + tableName + "\", \"" + _TableNameL + "\", \"" + chinaseTableName + "\", \"" + _TableNameL + "\"),");
-        sbGeneraBillTypeEnum.append(_TableNameH + "(" + "code" + ", \"" + tableName + "\", \"" + _TableNameL + "\", \"" + chinaseTableName + "\", \"" + _TableNameL + "\"),");
+        sbGeneraBillTypeEnum.append(_TableNameH.substring(2, _TableNameH.length()-1) + "(" + "code" + ", \"" + tableName.substring(1,tableName.length()-1) + "\", \"" + _TableNameL.substring(2, _TableNameL.length()-1)  + "\", \"" + chinaseTableName.substring(1,chinaseTableName.length()-1) + "\", \"" +  _TableNameL.substring(2, _TableNameL.length()-1)  + "\"),").append("\n");
     }
 
     public void getEnd(){
@@ -168,13 +174,14 @@ public class PsInsertListCopy {
 
         PsInsertListCopy ps = new PsInsertListCopy();
         System.out.println("________________________________ PSServerSocketHandler.java___________________________________________________________________");
+        System.out.println("________________________________ PSProcessorPOJOEnum.java___________________________________________________________________");
         System.out.println("_____________________________________________________________________________________________________________________________");
         System.out.println();
         for (int j = 0; j < fieldToAdd.size(); j += 3) {
-            ps.generaPSServerSocketHandler1(fieldToAdd.get(j), fieldToAdd.get(j+1), fieldToAdd.get(j+2),sbGeneraPSServerSocketHandler1);
+            ps.generaPSServerSocketHandler2(fieldToAdd.get(j), fieldToAdd.get(j+1), fieldToAdd.get(j+2),sbGeneraPSServerSocketHandler1);
         }
         try {
-            com.realtech.pandora.templates.dbtools.generatorAll.Main.byteOutStream(sbGeneraPSServerSocketHandler1.toString(),"PSServerSocketHandler");
+            com.realtech.pandora.templates.dbtools.generatorAll.Main.byteOutStream(sbGeneraPSServerSocketHandler1.toString(),"PSProcessorPOJOEnum");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,6 +237,19 @@ public class PsInsertListCopy {
                 "\t\t\t\t}").append("\n");
 
     }
+//    QmsIssueDateDistribution(TQmsIssueDateDistribution.class, BillTypeEnum.T_QMS_ISSUE_DATE_DISTRIBUTION),
+public void generaPSServerSocketHandler2(String tableName, String chinaseTableName, String psName,StringBuilder sbGeneraPSServerSocketHandler1) {
+    _TableNameL = camelToUnderline(tableName);
+    _TableNameH = _TableNameL.toUpperCase();
+    _TableNameV = tableName.substring(0, 1).toLowerCase() + tableName.substring(1);
+
+    sbGeneraPSServerSocketHandler1.append( tableName.substring(1, tableName.length()-1)+"(com.eohi.yun.model."+tableName.substring(1, tableName.length()-1)+".class," +
+            "BillTypeEnum."+_TableNameH.substring(2, _TableNameH.length()-1)+"),"+"\n");
+
+    /*sbGeneraPSServerSocketHandler1.append( "QLL_"+tableName.substring(1, tableName.length()-1)+"(com.eohi.qll.model."+ tableName.substring(1, tableName.length()-1)+".class," +
+            "BillTypeEnum.QLL_"+_TableNameH.substring(2, _TableNameH.length()-1)+"),"+"\n");*/
+
+}
 
     final static String cfn = "net.sourceforge.jtds.jdbc.Driver";
     final static String url = "jdbc:jtds:sqlserver://192.168.0.8:1433/eohi-yun-db";

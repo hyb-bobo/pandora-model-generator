@@ -5,23 +5,25 @@ import com.realtech.pandora.myAnnotation.PKType;
 import com.eohi.qll.myAnnotation.SkipJsonToString;
 import com.eohi.qll.tag.Enum;
 
+import java.math.BigDecimal;
 
 
 @PKType(setType = String.class)
 public class T700Member extends BaseModel<String> {
 
 	private Integer approvalStatus;
-	private String localName;
-	private Integer isEohiCustomer;
-	private Integer iotEnable;
 	private String note;
-	private String companyId;
-	private Integer creditLevel;
 	private Integer productionMode;
-	private String name;
+	private BigDecimal markup;
 	private String description;
+	private BigDecimal discount;
 	private Integer type;
 	private String approvedAt;
+	private String localName;
+	private Integer isEohiCustomer;
+	private String companyId;
+	private Integer creditLevel;
+	private String name;
 
 	@SkipJsonToString
 	public String getId() {
@@ -34,17 +36,18 @@ public class T700Member extends BaseModel<String> {
 	
 	public static final Enum businessColumns = new Enum(
 	 	"approvalStatus", "approval status",
+	 	"note", "note",
+	 	"productionMode", "production mode",
+	 	"markup", "markup",
+	 	"description", "description",
+	 	"discount", "discount",
+	 	"type", "type",
+	 	"approvedAt", "approved at",
 	 	"localName", "local name",
 	 	"isEohiCustomer", "is eohi customer",
-	 	"iotEnable", "iot enable",
-	 	"note", "note",
 	 	"companyId", "company id",
 	 	"creditLevel", "credit level",
-	 	"productionMode", "production mode",
-	 	"name", "name",
-	 	"description", "description",
-	 	"type", "type",
-	 	"approvedAt", "approved at"
+	 	"name", "name"
 	); 
 	
 	public Integer getApprovalStatus() {
@@ -53,6 +56,62 @@ public class T700Member extends BaseModel<String> {
 
 	public void setApprovalStatus(Integer approvalStatus) {
 		this.approvalStatus = approvalStatus;
+	}
+	
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+	
+	public Integer getProductionMode() {
+		return productionMode;
+	}
+
+	public void setProductionMode(Integer productionMode) {
+		this.productionMode = productionMode;
+	}
+	
+	public BigDecimal getMarkup() {
+		return markup;
+	}
+
+	public void setMarkup(BigDecimal markup) {
+		this.markup = markup;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	
+	public String getApprovedAt() {
+		return approvedAt;
+	}
+
+	public void setApprovedAt(String approvedAt) {
+		this.approvedAt = approvedAt;
 	}
 	
 	public String getLocalName() {
@@ -71,22 +130,6 @@ public class T700Member extends BaseModel<String> {
 		this.isEohiCustomer = isEohiCustomer;
 	}
 	
-	public Integer getIotEnable() {
-		return iotEnable;
-	}
-
-	public void setIotEnable(Integer iotEnable) {
-		this.iotEnable = iotEnable;
-	}
-	
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
-	}
-	
 	public String getCompanyId() {
 		return companyId;
 	}
@@ -103,44 +146,12 @@ public class T700Member extends BaseModel<String> {
 		this.creditLevel = creditLevel;
 	}
 	
-	public Integer getProductionMode() {
-		return productionMode;
-	}
-
-	public void setProductionMode(Integer productionMode) {
-		this.productionMode = productionMode;
-	}
-	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public Integer getType() {
-		return type;
-	}
-
-	public void setType(Integer type) {
-		this.type = type;
-	}
-	
-	public String getApprovedAt() {
-		return approvedAt;
-	}
-
-	public void setApprovedAt(String approvedAt) {
-		this.approvedAt = approvedAt;
 	}
 	
 }
