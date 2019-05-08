@@ -117,15 +117,33 @@ public class PsInsertList {
 //            "TTeamShiftPersonLink","","PSProcessorQLL",
 //            "TTeamMember", "班组成员表", "PSProcessorQLL",
 //            "T700Attachment", "附件表", "PSProcessorQLL",
-            "T700PriceBook", "价格表", "PSProcessorQLL",
-            "T700PriceBookQuantityBreak", "定价区间表", "PSProcessorQLL",
-            "T700SupplyDemandRelation", "供需关系", "PSProcessorQLL",
-            "T700User", "用户", "PSProcessorQLL",
-            "T700Role", "角色", "PSProcessorQLL",
-            "T700Function", "功能节点", "PSProcessorQLL",
-            "T700RoleFunctionLink", "角色-功能节点-权限", "PSProcessorQLL",
+//            "T700PriceBook", "价格表", "PSProcessorQLL",
+//            "T700PriceBookQuantityBreak", "定价区间表", "PSProcessorQLL",
+//            "T700SupplyDemandRelation", "供需关系", "PSProcessorQLL",
+//            "T700User", "用户", "PSProcessorQLL",
+//            "T700Role", "角色", "PSProcessorQLL",
+//            "T700Function", "功能节点", "PSProcessorQLL",
+//            "T700RoleFunctionLink", "角色-功能节点-权限", "PSProcessorQLL",
+//            "T700PlanTask", "计划任务表", "PSProcessorQLL",
+//            "T700SupplyDemandPlan", "供需计划表", "PSProcessorQLL",
+//            "T700Event", "平台事件表", "PSProcessorQLL",
+//            "T700Consume", "计划消耗表", "PSProcessorQLL",
+//            "T700RoleUserLink", "角色_用户_关联表", "PSProcessorQLL",
+//            "T700ServiceFee", "平台服费率表", "PSProcessorQLL",
+//            "T700Warehouse","存储仓库基础数据表","PSProcessorQLL",
+//            "T700InventoryOrganization","库存组织表","PSProcessorQLL",
+//            "T700StockAcounting","存货核算表","PSProcessorQLL",
+//            "T700WarehouseIoFlow","出入库流水表","PSProcessorQLL",
+//            "T700InventoryBalance","库存余额表","PSProcessorQLL",
+//            "T700SalesSettleAccounts","销售结算表","PSProcessorQLL",
+//            "T700LogisticsInfo","物流详情表","PSProcessorQLL",
+//            "T700OnTransportStatistics","在途货物统计表","PSProcessorQLL",
+//            "T700LogisticsDispatchOrder","物流派工表","PSProcessorQLL",
+            "T700SystemParam","系统参数表","PSProcessorQLL",
+            "T700SystemParamValue","系统参数值表","PSProcessorQLL",
 
     };
+
 
     // 以下不用填写
     public static String _TableNameL = "";
@@ -246,12 +264,6 @@ public class PsInsertList {
 
     public static void main(String[] args) {
 
-
-
-
-
-
-
         PsInsertList ps = new PsInsertList();
 
         System.out.println("________________________________ PSServerSocketHandler.java___________________________________________________________________");
@@ -290,6 +302,15 @@ public class PsInsertList {
                 "\t\t\t\tsuccess = new ModelHandler(sqlExecResult, BillTypeEnum." + _TableNameH + ", new "+psName+"()).execute(pojo, sqlSession, referProcessor);\n" +
                 "\t\t\t\t}");
         System.out.println();
+    }
+
+    public void generaPSServerSocketHandler2(String tableName, String chinaseTableName, String psName) {
+        _TableNameL = camelToUnderline(tableName);
+        _TableNameH = _TableNameL.toUpperCase();
+        _TableNameV = tableName.substring(0, 1).toLowerCase() + tableName.substring(1);
+        System.out.println(tableName+"(com.eohi.qll.model."+tableName+".class," +
+                "BillTypeEnum."+_TableNameH+"),"+"\n");
+
     }
 
     final static String cfn = "net.sourceforge.jtds.jdbc.Driver";

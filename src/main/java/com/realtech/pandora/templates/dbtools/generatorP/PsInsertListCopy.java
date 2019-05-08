@@ -4,6 +4,7 @@ import com.realtech.pandora.constants.BillTypeEnum;
 import com.realtech.pandora.model.TEamPlanTask;
 import com.realtech.pandora.model.base.BaseModel;
 import com.realtech.pandora.model.persistent.SqlReplyModel;
+import com.realtech.pandora.templates.dbtools.Config;
 import com.realtech.pandora.templates.dbtools.generatorAll.*;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -242,8 +243,7 @@ public void generaPSServerSocketHandler2(String tableName, String chinaseTableNa
     _TableNameL = camelToUnderline(tableName);
     _TableNameH = _TableNameL.toUpperCase();
     _TableNameV = tableName.substring(0, 1).toLowerCase() + tableName.substring(1);
-
-    sbGeneraPSServerSocketHandler1.append( tableName.substring(1, tableName.length()-1)+"(com.eohi.yun.model."+tableName.substring(1, tableName.length()-1)+".class," +
+    sbGeneraPSServerSocketHandler1.append( tableName.substring(1, tableName.length()-1)+"("+ Config.basePackage+"."+tableName.substring(1, tableName.length()-1)+".class," +
             "BillTypeEnum."+_TableNameH.substring(2, _TableNameH.length()-1)+"),"+"\n");
 
     /*sbGeneraPSServerSocketHandler1.append( "QLL_"+tableName.substring(1, tableName.length()-1)+"(com.eohi.qll.model."+ tableName.substring(1, tableName.length()-1)+".class," +
